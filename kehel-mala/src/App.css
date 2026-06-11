@@ -1,0 +1,204 @@
+:root {
+  --bg: #faf3e8;
+  --ink: #1a1a1a;
+  --muted: #8a8178;
+  --gap: 28px;
+  --art-height: 340px; /* shared hang height — pieces align like works on a wall */
+
+  /* Brand palette: banana-gold → orange → flower-red */
+  --gold: #e6ad3f;
+  --orange: #de8323;
+  --red: #cf5938;
+
+  --mat: #fdf7e7; /* soft cream mat around each painting */
+}
+
+.App {
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* ---- Header: logo, then menu (Outré order) ---- */
+.site-header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 24px;
+  text-align: center;
+}
+
+.site-logo {
+  display: block;
+  width: clamp(150px, 28vw, 220px);
+  height: auto;
+  margin: 0 auto 18px;
+}
+
+/* ---- About: centered bio, below the logo ---- */
+.about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 24px 8px;
+  text-align: center;
+}
+
+/* Accessible heading text, hidden visually (the logo carries the wordmark). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.site-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---- Footer: compact dictionary entry, tucked at the bottom ---- */
+.site-footer {
+  border-top: 1px solid #ededed;
+  margin-top: 24px;
+  padding: 36px 24px 64px;
+}
+
+.dictionary {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.dict-headword {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.dict-etymology {
+  margin: 0 0 8px;
+  color: var(--orange);
+}
+
+.dict-def {
+  margin: 0 0 8px;
+}
+
+.dict-usage {
+  margin: 0;
+}
+
+.dict-usage strong {
+  color: var(--red);
+}
+
+.contact {
+  margin: 28px 0 0;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.contact a {
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.contact a:hover {
+  border-bottom-color: var(--orange);
+}
+
+.copyright {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #b3a89a;
+}
+
+/* ---- Gallery: the focus. Pieces hang at a shared height, no cropping. ---- */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 44px var(--gap);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 32px 96px;
+}
+
+.piece {
+  margin: 0;
+  flex: 0 0 auto; /* keep natural proportions — never stretch or crop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The frame: a soft sage mat (complement to the warm cream bg) + soft shadow. */
+.piece-frame {
+  background: var(--mat);
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(40, 34, 24, 0.14);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.piece-frame img {
+  display: block;
+  height: var(--art-height);
+  width: auto;
+  max-width: 100%;
+}
+
+.piece:hover .piece-frame {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(40, 34, 24, 0.2);
+}
+
+.piece-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 2px 0;
+  text-align: center;
+}
+
+.piece-artist {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.piece-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.piece-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    --gap: 20px;
+    --art-height: 220px;
+    gap: 32px var(--gap);
+  }
+}
