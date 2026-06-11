@@ -84,7 +84,7 @@ export const paintings: Painting[] = [
   { id: '18', title: 'Hearth', orientation: 'portrait', medium: "photography", date:"2025-11", tags:["chaamudi", "photography"], image: '/paintings/portraits/natives-1-version-1.png' },
   { id: '19', title: 'Natives at Botanic Gardens I', orientation: 'portrait', medium: "watercolour", date:"2025-11", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-2-version-1.png' },
   { id: '20', title: 'Natives at Botanic Gardens II', orientation: 'portrait', medium: "watercolour", date:"2025-11", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-3-version-1.png', versions: 2 },
-  { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", date:"2025-11", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png', versions: 2 },
+  { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", date:"2025-11", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png' },
 
   // Sri Lanka & Princess Blue
   { id: '21', title: 'Sri Lanka', orientation: 'portrait', medium: "pen", date:"2024-12", tags:["chaamudi", "pen"], image: '/paintings/portraits/srilanka-1-version-1.png' },
