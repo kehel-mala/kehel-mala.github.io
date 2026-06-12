@@ -1,13 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
-import { paintings, Painting, Orientation, TAGS, Tag } from './paintings';
+import {
+  paintings,
+  Painting,
+  Orientation,
+  TAGS,
+  Tag,
+  CATEGORIES,
+  Category,
+  DEFAULT_CATEGORY,
+} from './paintings';
 
+// Top-level nav targets used to highlight the active menu item.
 type Page = 'about' | 'gallery' | 'contact';
-const PAGES: Page[] = ['about', 'gallery', 'contact'];
 
-// A route is either one of the top-level pages or a single artwork detail view.
-type Route = { kind: 'page'; page: Page } | { kind: 'work'; id: string };
+// A route is a top-level page, the gallery (optionally filtered to one category,
+// or 'all'), or a single artwork detail view.
+type Route =
+  | { kind: 'page'; page: 'about' | 'contact' }
+  | { kind: 'gallery'; category: Category | 'all' }
+  | { kind: 'work'; id: string };
 
 const CONTACT_EMAIL = 'milindi.beeloud@gmail.com';
 
@@ -223,17 +236,18 @@ function Lightbox({
 
 // The detail page for a single artwork: a large image with a version switcher and
 // the full set of details (medium, date, dimensions, tags, description).
-function WorkPage({ id }: { id: string }) {
+function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; backLabel: string }) {
   const painting = paintings.find((p) => p.id === id);
   const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [embedFailed, setEmbedFailed] = useState(false);
 
   if (!painting) {
     return (
       <section className="page work-missing">
         <h2 className="page-title">Work not found</h2>
         <p className="site-desc">
-          We couldn't find that piece. <a href="#/gallery">Back to the gallery →</a>
+          We couldn't find that piece. <a href={backHref}>Back to {backLabel} →</a>
         </p>
       </section>
     );
@@ -242,6 +256,7 @@ function WorkPage({ id }: { id: string }) {
   const images = imagesFor(painting);
   const multiple = images.length > 1;
   const subject = encodeURIComponent(`Enquiry about "${painting.title}"`);
+  const isWebsite = painting.category === 'website' && !!painting.url;
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = placeholder(painting.title, painting.orientation);
@@ -249,27 +264,61 @@ function WorkPage({ id }: { id: string }) {
 
   return (
     <article className="work-page">
-      <a className="work-back" href="#/gallery">
-        ‹ Back to gallery
+      <a className="work-back" href={backHref}>
+        ‹ Back to {backLabel}
       </a>
 
       <div className={`work-layout ${painting.orientation}`}>
         <div className="work-media">
-          <button
-            type="button"
-            className={`work-frame ${painting.orientation}`}
-            onClick={() => setLightbox(true)}
-            aria-label="Open full-size gallery"
-          >
-            <img
-              src={images[index]}
-              alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
-              onError={onError}
-            />
-            <span className="work-zoom-hint" aria-hidden="true">⤢</span>
-          </button>
+          {isWebsite ? (
+            <div className="work-website">
+              {embedFailed ? (
+                <a
+                  className="work-embed-fallback"
+                  href={painting.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={images[0]} alt={painting.title} onError={onError} />
+                  <span className="work-embed-note">
+                    This site can't be embedded — open it in a new tab ↗
+                  </span>
+                </a>
+              ) : (
+                <iframe
+                  className={`work-iframe ${painting.orientation}`}
+                  src={painting.url}
+                  title={painting.title}
+                  loading="lazy"
+                  onError={() => setEmbedFailed(true)}
+                />
+              )}
+              <a
+                className="work-visit"
+                href={painting.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open site ↗
+              </a>
+            </div>
+          ) : (
+            <>
+              <button
+                type="button"
+                className={`work-frame ${painting.orientation}`}
+                onClick={() => setLightbox(true)}
+                aria-label="Open full-size gallery"
+              >
+                <img
+                  src={images[index]}
+                  alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
+                  onError={onError}
+                />
+                <span className="work-zoom-hint" aria-hidden="true">⤢</span>
+              </button>
 
-          {multiple && (
+              {multiple && (
             <div className="work-thumbs" role="tablist" aria-label="Versions">
               {images.map((src, i) => (
                 <button
@@ -285,6 +334,8 @@ function WorkPage({ id }: { id: string }) {
                 </button>
               ))}
             </div>
+              )}
+            </>
           )}
         </div>
 
@@ -353,11 +404,24 @@ function WorkPage({ id }: { id: string }) {
 }
 
 function NavBar({ page }: { page: Page }) {
-  const links: { id: Page; label: string }[] = [
-    { id: 'about', label: 'About Us' },
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'contact', label: 'Contact Us' },
-  ];
+  const [open, setOpen] = useState(false);
+  const dropRef = useRef<HTMLDivElement>(null);
+
+  // Close the Gallery dropdown on outside click or Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
   return (
     <header className="navbar">
       <a className="brand" href="#/gallery">
@@ -367,11 +431,51 @@ function NavBar({ page }: { page: Page }) {
         <h1 className="visually-hidden">🍌 කෙහෙල් මල 🍌 kehel mala 🍌 banana flower 🍌</h1>
       </a>
       <nav className="nav-links">
-        {links.map((l) => (
-          <a key={l.id} href={`#/${l.id}`} className={page === l.id ? 'active' : ''}>
-            {l.label}
+        <a href="#/about" className={page === 'about' ? 'active' : ''}>
+          About Us
+        </a>
+
+        <div className="nav-dropdown" ref={dropRef}>
+          {/* The label navigates to "All"; the caret opens the type menu. */}
+          <a
+            href="#/gallery"
+            className={`nav-trigger-link ${page === 'gallery' ? 'active' : ''}`}
+            onClick={() => setOpen(false)}
+          >
+            Gallery
           </a>
-        ))}
+          <button
+            type="button"
+            className="nav-caret"
+            aria-label="Browse gallery types"
+            aria-haspopup="true"
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={open ? 'caret up' : 'caret'} aria-hidden="true" />
+          </button>
+          {open && (
+            <div className="nav-menu" role="menu">
+              <a role="menuitem" href="#/gallery" onClick={() => setOpen(false)}>
+                All
+              </a>
+              {CATEGORIES.map((c) => (
+                <a
+                  key={c.id}
+                  role="menuitem"
+                  href={`#/gallery/${c.id}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {c.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <a href="#/contact" className={page === 'contact' ? 'active' : ''}>
+          Contact Us
+        </a>
       </nav>
     </header>
   );
@@ -416,7 +520,7 @@ const MEDIUM_TAGS: Tag[] = TAGS.filter((t) => !ARTIST_TAGS.includes(t));
 
 type Sort = 'featured' | 'newest' | 'oldest';
 
-function GalleryPage() {
+function GalleryPage({ category }: { category: Category | 'all' }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Tag[]>([]);
   const [sort, setSort] = useState<Sort>('featured');
@@ -427,8 +531,13 @@ function GalleryPage() {
   const selArtists = selected.filter((t) => ARTIST_TAGS.includes(t));
   const selMediums = selected.filter((t) => MEDIUM_TAGS.includes(t));
 
+  const heading =
+    category === 'all' ? 'Gallery' : CATEGORIES.find((c) => c.id === category)?.label ?? 'Gallery';
+
+  // First narrow to the selected type, then apply the tag filters.
   // Within a group, match ANY selected tag; across groups, match ALL groups (Outré-style).
   const filtered = paintings.filter((p) => {
+    if (category !== 'all' && (p.category ?? DEFAULT_CATEGORY) !== category) return false;
     const tags = p.tags ?? [];
     const artistOk = selArtists.length === 0 || selArtists.some((t) => tags.includes(t));
     const mediumOk = selMediums.length === 0 || selMediums.some((t) => tags.includes(t));
@@ -459,7 +568,7 @@ function GalleryPage() {
 
   return (
     <main className="gallery-page">
-      <h2 className="page-title gallery-title">Gallery</h2>
+      <h2 className="page-title gallery-title">{heading}</h2>
       <div className="gallery-controls">
         <div className="filter-bar">
           <button
@@ -519,7 +628,11 @@ function GalleryPage() {
       </div>
 
       {visible.length === 0 ? (
-        <p className="no-results">No works match these filters.</p>
+        <p className="no-results">
+          {selected.length === 0 && category !== 'all'
+            ? 'Nothing here yet — check back soon.'
+            : 'No works match these filters.'}
+        </p>
       ) : (
         <div className="gallery">
           {visible.map((p) => (
@@ -550,33 +663,77 @@ function routeFromHash(): Route {
   const raw = window.location.hash.replace(/^#\/?/, '');
   const work = raw.match(/^work\/(.+)$/);
   if (work) return { kind: 'work', id: decodeURIComponent(work[1]) };
-  const slug = raw as Page;
-  return { kind: 'page', page: PAGES.includes(slug) ? slug : 'gallery' };
+  if (raw === 'about') return { kind: 'page', page: 'about' };
+  if (raw === 'contact') return { kind: 'page', page: 'contact' };
+  // '#/gallery' (all) or '#/gallery/<category>' (one type).
+  const gal = raw.match(/^gallery(?:\/([\w-]+))?$/);
+  const cat = gal?.[1];
+  const valid = CATEGORIES.some((c) => c.id === cat);
+  return { kind: 'gallery', category: valid ? (cat as Category) : 'all' };
+}
+
+// The gallery URL and human label for a category (used by the detail page's
+// "Back to …" link so it returns to the section the visitor came from).
+function galleryHref(category: Category | 'all'): string {
+  return category === 'all' ? '#/gallery' : `#/gallery/${category}`;
+}
+function galleryLabel(category: Category | 'all'): string {
+  if (category === 'all') return 'gallery';
+  return CATEGORIES.find((c) => c.id === category)?.label ?? 'gallery';
 }
 
 function App() {
   const [route, setRoute] = useState<Route>(routeFromHash());
+  // Remember each route's scroll position so returning from a detail page lands
+  // back where you left off, while brand-new routes still start at the top.
+  const scrollPositions = useRef<Record<string, number>>({});
+  const currentHash = useRef<string>(window.location.hash);
+  // The last gallery category the visitor browsed, so a work's "Back" link returns
+  // to that section (e.g. Photography) rather than always to "All".
+  const lastGalleryCat = useRef<Category | 'all'>(
+    route.kind === 'gallery' ? route.category : 'all',
+  );
 
   useEffect(() => {
     const onHashChange = () => {
+      // Stash the scroll position of the page we're leaving before switching.
+      scrollPositions.current[currentHash.current] = window.scrollY;
+      currentHash.current = window.location.hash;
       setRoute(routeFromHash());
-      window.scrollTo(0, 0);
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  // A work detail page lives under the gallery, so keep the Gallery nav link active.
-  const navPage: Page = route.kind === 'work' ? 'gallery' : route.page;
+  // After the new route renders, restore its saved scroll position (0 if unseen).
+  useLayoutEffect(() => {
+    const saved = scrollPositions.current[currentHash.current] ?? 0;
+    window.scrollTo(0, saved);
+    const raf = requestAnimationFrame(() => window.scrollTo(0, saved));
+    return () => cancelAnimationFrame(raf);
+  }, [route]);
+
+  // Track the section the visitor is browsing while they're on a gallery view.
+  if (route.kind === 'gallery') lastGalleryCat.current = route.category;
+
+  // The gallery and any artwork detail page keep the Gallery nav item active.
+  const navPage: Page = route.kind === 'page' ? route.page : 'gallery';
 
   return (
     <div className="App">
       <NavBar page={navPage} />
 
       <div className="content">
-        {route.kind === 'work' && <WorkPage key={route.id} id={route.id} />}
+        {route.kind === 'work' && (
+          <WorkPage
+            key={route.id}
+            id={route.id}
+            backHref={galleryHref(lastGalleryCat.current)}
+            backLabel={galleryLabel(lastGalleryCat.current)}
+          />
+        )}
+        {route.kind === 'gallery' && <GalleryPage category={route.category} />}
         {route.kind === 'page' && route.page === 'about' && <AboutPage />}
-        {route.kind === 'page' && route.page === 'gallery' && <GalleryPage />}
         {route.kind === 'page' && route.page === 'contact' && <ContactPage />}
       </div>
 

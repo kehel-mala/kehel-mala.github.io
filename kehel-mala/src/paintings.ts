@@ -16,9 +16,30 @@ export const TAGS = [
   'origami',
   'wood',
   'glass paint',
+  'clay',
+  'zine',
+  'website',
+  'digital art',
 ] as const;
 
 export type Tag = (typeof TAGS)[number];
+
+// The Gallery "type" sections, shown in the Gallery nav dropdown. Every piece
+// belongs to one category (defaulting to 'painting'); 'all' is a virtual view
+// that shows everything in featured order.
+export const CATEGORIES = [
+  { id: 'art', label: 'Art' }, // paintings, digital, pen, pencil — anything on canvas/paper
+  { id: 'photography', label: 'Photography' },
+  { id: 'zine', label: 'Zines' },
+  { id: 'clay', label: 'Clay' },
+  { id: 'origami', label: 'Origami' },
+  { id: 'website', label: 'Websites' },
+] as const;
+
+export type Category = (typeof CATEGORIES)[number]['id'];
+
+// Pieces without an explicit `category` fall into 'art'.
+export const DEFAULT_CATEGORY: Category = 'art';
 
 export interface Painting {
   id: string;
@@ -35,9 +56,16 @@ export interface Painting {
   description?: string;
   /** Filter tags from the TAGS vocabulary (artist + medium). */
   tags?: Tag[];
+  /** Which Gallery section/type this belongs to. Defaults to 'painting'. */
+  category?: Category;
+  /**
+   * For website pieces — the live site URL. The detail page embeds it in an
+   * iframe (with an "Open site" link as fallback for sites that block embedding).
+   */
+  url?: string;
   /** 'landscape' (wide) or 'portrait' (tall) — controls the tile shape. */
   orientation: Orientation;
-  /** Primary image path (the `-version-1` file). */
+  /** Primary image path (the `-version-1` file). For websites, a screenshot. */
   image: string;
   /**
    * TOTAL number of version files for this piece, named `<base>-version-<n>`.
@@ -89,7 +117,7 @@ export const paintings: Painting[] = [
   { id: '17', title: 'Darkest timeline', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/mind-map-2-version-1.png' },
 
   // Natives
-  { id: '18', title: 'Hearth', orientation: 'portrait', medium: "photography", tags:["chaamudi", "photography"], image: '/paintings/portraits/natives-1-version-1.png' },
+  { id: '18', title: 'Hearth', orientation: 'portrait', medium: "photography", category: 'photography', tags:["chaamudi", "photography"], image: '/paintings/portraits/natives-1-version-1.png' },
   { id: '19', title: 'Natives at Botanic Gardens I', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-2-version-1.png' },
   { id: '20', title: 'Natives at Botanic Gardens II', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-3-version-1.png', versions: 2 },
   { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png'},
@@ -105,7 +133,7 @@ export const paintings: Painting[] = [
   { id: '26', title: 'Horney-poo shaws!', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/silksong-4-version-1.png', versions: 2 },
 
   // Origami & Doodles
-  { id: '27', title: 'Slug', orientation: 'portrait', medium: "origami", tags:["milindi", "origami"], image: '/paintings/portraits/origami-1-version-1.png', versions: 2 },
+  { id: '27', title: 'Slug', orientation: 'portrait', medium: "origami", category: 'origami', tags:["milindi", "origami"], image: '/paintings/portraits/origami-1-version-1.png', versions: 2 },
   { id: '28', title: 'Favourite Things', medium: "watercolour", tags:["milindi", "watercolour"], orientation: 'portrait', image: '/paintings/portraits/doodles-version-1.png', versions: 2 },
 
   // Paint and Sip & Spoon
@@ -120,7 +148,7 @@ export const paintings: Painting[] = [
 
   // Whimsical Fruits (theme spans both folders)
   { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2 },
-  { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png' },
+  { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png', versions: 2 },
 
   // Random
   { id: '37', title: 'Burnt Out But Survivin', orientation: 'portrait', medium: "pencil", tags:["chaamudi", "pencil"], image: '/paintings/portraits/grumpy-1-version-1.png' },
@@ -131,7 +159,35 @@ export const paintings: Painting[] = [
   { id: '41', title: 'Sinhala Hoodiya (Sinhala Alphabet)', orientation: 'portrait', medium: "pen", tags:["milindi", "pen"], image: '/paintings/portraits/hoodiya-1-version-1.png' },
   { id: '42', title: 'Perpetual third wheel', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/third-wheel-1-version-1.png', versions: 2},
 
-  { id: '43', title: 'Carlton Gardens', orientation: 'portrait', medium: "photography", tags:["milindi", "photography"], image: '/paintings/portraits/carlton-gardens-1-version-1.png'},
-  { id: '44', title: 'Sunrise Through The Years', orientation: 'landscape', medium: "photography", tags:["milindi", "photography"], image: '/paintings/portraits/morning-1-version-1.png', versions: 5},
+  { id: '43', title: 'Carlton Gardens', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/carlton-gardens-1-version-1.png'},
+  { id: '55', title: 'Nuwara Eliya', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/nuwara-eliya-1-version-1.png', versions: 2},
+  { id: '44', title: 'Sunrise Through The Years', orientation: 'landscape', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/morning-1-version-1.png', versions: 4},
+  { id: '54', title: 'Autumn', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/spider-park-1-version-1.png'},
+  { id: '56', title: 'Whisps in the wind', orientation: 'landscape', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/landscapes/cloud-1-version-1.png', versions: 3},
+
+
+  { id: '50', title: 'Black Dog & Black Bird', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/black-dog-black-bird-1-version-1.png'},
+  { id: '51', title: 'Shapes I', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/shapes-1-version-1.png'},
+  { id: '52', title: 'Shapes II', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/shapes-framed-1-version-1.png'},
+  { id: '53', title: 'Bored.', orientation: 'portrait', medium: "digital art", tags:["chaamudi", "digital art"], image: '/paintings/portraits/bored-1-version-1.png'},
+
+  // ---------------------------------------------------------------------------
+  // Websites — set `category: 'website'` and `url` to the live site. `image` is a
+  // screenshot/thumbnail (drop it in /public/websites/ and reference it here).
+  // The detail page embeds the URL in an iframe with an "Open site ↗" fallback.
+  { id: '45', title: 'Colourful Language', orientation: 'landscape', category: 'website', url: 'https://colourful-language.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/colourful-lang-1-version-1.png' },
+  { id: '46', title: 'Koho Koho', orientation: 'landscape', category: 'website', url: 'https://koho-koho.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/koho-koho-1-version-1.png', versions: 2 },
+  { id: '47', title: '#MugLife', orientation: 'landscape', category: 'website', url: 'https://muglife.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/mug-life-1-version-1.png' },
+
+
+  // Zines — set `category: 'zine'`. Use `versions` for multi-page spreads.
+  { id: '48', title: '#GuerillaTea', orientation: 'landscape', category: 'zine', tags: ['milindi', 'zine'], image: '/paintings/landscapes/zine-1-version-1.png', versions: 2 },
+  { id: '49', title: 'To my special someone . . .', orientation: 'portrait', category: 'zine', tags: ['chaamudi', 'zine'], image: '/paintings/portraits/zine-2-version-1.png'},
+
+  // Clay — set `category: 'clay'`.
+  // { id: '47', title: 'Clay Piece', orientation: 'portrait', category: 'clay', tags: ['milindi', 'clay'], image: '/paintings/portraits/clay-1-version-1.png' },
+
+  // Digital art lives under the 'Art' category (the default) — just tag it 'digital art'.
+  // { id: '48', title: 'Digital Piece', orientation: 'portrait', tags: ['chaamudi', 'digital art'], image: '/paintings/portraits/digital-1-version-1.png' },
 
 ];
