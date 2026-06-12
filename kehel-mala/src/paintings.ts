@@ -53,6 +53,10 @@ export interface Painting {
 // `medium`, `date`, and `tags` are intentionally left blank for now — add them per
 // piece. Portraits live in /paintings/portraits, landscapes in /paintings/landscapes.
 export const paintings: Painting[] = [
+
+  // Featured
+
+
   // Backgrounds
   { id: '1', title: 'My mother', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["milindi", "acrylic"], image: '/paintings/portraits/background-1-version-1.png' },
   { id: '2', title: 'Dreamscape', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/background-2-version-1.png' },
@@ -62,16 +66,16 @@ export const paintings: Painting[] = [
   { id: '4', title: 'Water', orientation: 'portrait', medium: "acrylic", date:"2025-10", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/elements-2-version-1.png' },
 
   // Patterns & Sparkles
-  { id: '5', title: 'Modern Moonstone', orientation: 'portrait', medium: "acrylic", date:"2025-11", tags:["milindi", "watercolour"], image: '/paintings/portraits/patterns-1-version-1.png' },
-  { id: '6', title: 'Sparkles', orientation: 'portrait', medium: "pen", date:"2025-12", tags:["chaamudi", "pen"], image: '/paintings/portraits/sparkles-1-version-1.png', versions: 3 },
+  { id: '5', title: 'Modern Moonstone', orientation: 'portrait', medium: "acrylic", date:"2025-11", tags:["milindi", "watercolour"], image: '/paintings/portraits/patterns-1-version-1.png', versions: 2 },
+  { id: '6', title: 'Sparkles', orientation: 'portrait', medium: "pen", date:"2025-12", tags:["chaamudi", "pen"], image: '/paintings/portraits/sparkles-1-version-1.png', versions: 4 },
 
   // Flowers (theme spans both folders)
-  { id: '7', title: 'Sepalika', orientation: 'landscape', medium: "watercolour", date:"2026-04", tags:["milindi", "watercolour"], image: '/paintings/landscapes/flowers-1-version-1.png' },
-  { id: '8', title: 'Robosia', orientation: 'portrait', medium: "watercolour", date:"2026-04", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/flowers-2-version-1.png', versions: 2 },
+  { id: '7', title: 'Sepalika', orientation: 'landscape', medium: "watercolour", date:"2026-04", tags:["milindi", "watercolour"], image: '/paintings/landscapes/flowers-1-version-1.png', versions: 2 },
+  { id: '8', title: 'Robosia', orientation: 'portrait', medium: "watercolour", date:"2026-04", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/flowers-2-version-1.png', versions: 3 },
 
   // Trees & Frogs
   { id: '9', title: 'Chilli', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["milindi", "watercolour"], image: '/paintings/portraits/trees-1-version-1.png' },
-  { id: '10', title: 'Gedara', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/trees-2-version-1.png' },
+  { id: '10', title: 'Teeny tiny', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/trees-2-version-1.png' },
   { id: '11', title: 'Jingle frogs', orientation: 'landscape', medium: "felt", date:"2025-12", tags:["chaamudi", "felt"], image: '/paintings/landscapes/frogs-1-version-1.png' },
 
   // Space
@@ -112,10 +116,10 @@ export const paintings: Painting[] = [
   { id: '31', title: 'Tea cup I', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/tea-party-1-version-1.png' },
   { id: '32', title: 'Tea cup II - Factorials', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["guest star", "watercolour"], image: '/paintings/portraits/tea-party-2-version-1.png' },
   { id: '33', title: 'Tea cup III', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "watercolour"], image: '/paintings/portraits/tea-party-3-version-1.png' },
-  { id: '34', title: 'Tea Party', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "chaamudi", "guest star", "watercolour"], image: '/paintings/portraits/tea-party-4-version-1.png' },
+  { id: '34', title: 'Tea Party', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "chaamudi", "guest star", "watercolour"], image: '/paintings/portraits/tea-party-4-version-1.png', versions: 3 },
 
   // Whimsical Fruits (theme spans both folders)
-  { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png' },
+  { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2 },
   { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png' },
 
   // Random
