@@ -655,40 +655,19 @@
   }
 }
 
-/* Whole gallery tile is a link to the artwork detail page. */
+/* The image links through to the artwork detail page; it fills the fixed cell. */
 .piece-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+}
+
+/* Caption is also a link, but stays styled like plain text. */
+.piece-caption-link {
+  display: block;
   color: inherit;
   text-decoration: none;
-}
-
-/* Small badge marking pieces that have more than one version. */
-.piece-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 3px 8px;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gold-ink);
-  background: rgba(253, 247, 231, 0.92);
-  border-radius: 999px;
-  box-shadow: 0 1px 4px rgba(40, 34, 24, 0.18);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.piece:hover .piece-badge {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .piece-badge {
-    opacity: 1;
-  }
 }
 
 /* ---- Artwork detail page ---- */

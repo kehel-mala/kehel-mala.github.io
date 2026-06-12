@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import { paintings, Painting, Orientation, TAGS, Tag } from './paintings';
@@ -55,7 +55,24 @@ function imagesFor(painting: Painting): string[] {
 }
 
 function GalleryImage({ painting }: { painting: Painting }) {
-  const count = imagesFor(painting).length;
+  const images = imagesFor(painting);
+  const [index, setIndex] = useState(0);
+  const multiple = images.length > 1;
+  const touchStartX = useRef<number | null>(null);
+  const href = `#/work/${painting.id}`;
+
+  const go = (delta: number) =>
+    setIndex((i) => (i + delta + images.length) % images.length);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); // swipe left → next
+    touchStartX.current = null;
+  };
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = placeholder(painting.title, painting.orientation);
@@ -63,16 +80,53 @@ function GalleryImage({ painting }: { painting: Painting }) {
 
   return (
     <figure className={`piece ${painting.orientation}`}>
-      {/* The whole tile is a link to the artwork's detail page (Outré style). */}
-      <a className="piece-link" href={`#/work/${painting.id}`} aria-label={`View ${painting.title}`}>
-        <div className="piece-frame">
-          <div className="piece-stack">
-            <img src={painting.image} alt={painting.title} loading="lazy" onError={onError} />
-            {count > 1 && (
-              <span className="piece-badge">{count} versions</span>
-            )}
-          </div>
+      <div className="piece-frame">
+        <div className="piece-stack" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          {/* The image links through to the artwork's detail page. */}
+          <a className="piece-link" href={href} aria-label={`View ${painting.title}`}>
+            <img
+              src={images[index]}
+              alt={`${painting.title}${multiple ? ` (${index + 1} of ${images.length})` : ''}`}
+              loading="lazy"
+              onError={onError}
+            />
+          </a>
+
+          {/* Version controls overlay the image (siblings of the link, not nested). */}
+          {multiple && (
+            <>
+              <button
+                type="button"
+                className="piece-nav prev"
+                aria-label="Previous version"
+                onClick={() => go(-1)}
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="piece-nav next"
+                aria-label="Next version"
+                onClick={() => go(1)}
+              >
+                ›
+              </button>
+              <div className="piece-dots">
+                {images.map((src, i) => (
+                  <button
+                    key={src}
+                    type="button"
+                    className={i === index ? 'dot active' : 'dot'}
+                    aria-label={`View version ${i + 1}`}
+                    onClick={() => setIndex(i)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
+      </div>
+      <a className="piece-caption-link" href={href}>
         <figcaption className="piece-caption">
           {painting.artist && <span className="piece-artist">{painting.artist}</span>}
           <span className="piece-title">{painting.title}</span>
