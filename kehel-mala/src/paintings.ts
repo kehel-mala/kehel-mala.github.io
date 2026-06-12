@@ -20,6 +20,7 @@ export const TAGS = [
   'zine',
   'website',
   'digital art',
+  'chalk',
 ] as const;
 
 export type Tag = (typeof TAGS)[number];
@@ -31,7 +32,6 @@ export const CATEGORIES = [
   { id: 'art', label: 'Art' }, // paintings, digital, pen, pencil — anything on canvas/paper
   { id: 'photography', label: 'Photography' },
   { id: 'zine', label: 'Zines' },
-  { id: 'clay', label: 'Clay' },
   { id: 'origami', label: 'Origami' },
   { id: 'website', label: 'Websites' },
 ] as const;
@@ -83,75 +83,74 @@ export interface Painting {
 export const paintings: Painting[] = [
 
   // Featured
+  { id: '6', title: 'Sparkles', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/sparkles-1-version-1.png', versions: 4 },
 
+  { id: '29', title: 'Dancer', orientation: 'portrait', medium: "acrylic", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/paint-and-sip-1-version-1.png' },
 
-  // Backgrounds
-  { id: '1', title: 'Ammi (Mum)', orientation: 'portrait', medium: "acrylic", tags:["milindi", "acrylic"], image: '/paintings/portraits/background-1-version-1.png' },
+  { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2 },
+
+  { id: '57', title: 'Masquerade Masks', orientation: 'portrait', medium: "acrylic", tags:["milindi", "chaamudi", "acrylic"], image: '/paintings/portraits/masks-1-version-1.png', versions: 9 },
+
+  { id: '12', title: 'Dancing Star', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/dancing-star-1-version-1.png' },
+
+  { id: '22', title: 'Queen of the Night', orientation: 'portrait', medium: "chalk", tags:["chaamudi", "chalk"], image: '/paintings/portraits/princess-blue-1-version-1.png' },
+
+  { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png', versions: 2 },
+
+  { id: '55', title: 'Nuwara Eliya', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "chaamudi", "photography"], image: '/paintings/portraits/nuwara-eliya-1-version-1.png', versions: 2},
+
+  { id: '37', title: 'Burnt Out But Survivin', orientation: 'portrait', medium: "pencil", tags:["chaamudi", "pencil"], image: '/paintings/portraits/grumpy-1-version-1.png' },
+
+  { id: '7', title: 'Sepalika', orientation: 'landscape', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/landscapes/flowers-1-version-1.png', versions: 2 },
+
+  { id: '50', title: 'Black Dog & Black Bird', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/black-dog-black-bird-1-version-1.png'},
+
+  { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png'},
+
+  { id: '46', title: 'Koho Koho', orientation: 'landscape', category: 'website', url: 'https://koho-koho.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/koho-koho-1-version-1.png', versions: 2 },
+
+  // Here are the normals
+  { id: '1', title: 'Ammi', orientation: 'portrait', medium: "acrylic", tags:["milindi", "acrylic"], image: '/paintings/portraits/background-1-version-1.png' },
   { id: '2', title: 'Radiant Dreamscape', orientation: 'portrait', medium: "acrylic", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/background-2-version-1.png' },
 
-  // Elements
   { id: '3', title: 'Air', orientation: 'portrait', medium: "acrylic", tags:["milindi", "acrylic"], image: '/paintings/portraits/elements-1-version-1.png' },
   { id: '4', title: 'Water', orientation: 'portrait', medium: "acrylic", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/elements-2-version-1.png' },
 
-  // Patterns & Sparkles
   { id: '5', title: 'Modern Moonstone', orientation: 'portrait', medium: "acrylic", tags:["milindi", "watercolour"], image: '/paintings/portraits/patterns-1-version-1.png', versions: 2 },
-  { id: '6', title: 'Sparkles', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/sparkles-1-version-1.png', versions: 4 },
 
-  // Flowers (theme spans both folders)
-  { id: '7', title: 'Sepalika', orientation: 'landscape', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/landscapes/flowers-1-version-1.png', versions: 2 },
   { id: '8', title: 'Robosia', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/flowers-2-version-1.png', versions: 3 },
 
-  // Trees & Frogs
   { id: '9', title: 'Chilli', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/trees-1-version-1.png' },
   { id: '10', title: 'Pal path', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/trees-2-version-1.png' },
   { id: '11', title: 'Jingle frogs', orientation: 'landscape', medium: "felt", tags:["chaamudi", "felt"], image: '/paintings/landscapes/frogs-1-version-1.png' },
 
-  // Space
-  { id: '12', title: 'Dancing with the Stars', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/dancing-star-1-version-1.png' },
   { id: '13', title: 'Galaxy', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/galaxy-1-version-1.png' },
   { id: '14', title: 'Planet', orientation: 'portrait', medium: "texture", tags:["chaamudi", "texture"], image: '/paintings/portraits/planet-1-version-1.png' },
   { id: '15', title: 'Alien', orientation: 'portrait', medium: "texture", tags:["chaamudi", "texture"], image: '/paintings/portraits/space-alien-1-version-1.png' },
 
-  // Mind Map
   { id: '16', title: 'Mind Map', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour", "pen"], image: '/paintings/landscapes/mind-map-1-version-1.png' },
   { id: '17', title: 'Darkest timeline', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/mind-map-2-version-1.png' },
 
-  // Natives
   { id: '18', title: 'Hearth', orientation: 'portrait', medium: "photography", category: 'photography', tags:["chaamudi", "photography"], image: '/paintings/portraits/natives-1-version-1.png' },
   { id: '19', title: 'Natives at Botanic Gardens I', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-2-version-1.png' },
   { id: '20', title: 'Natives at Botanic Gardens II', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/natives-3-version-1.png', versions: 2 },
-  { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png'},
 
-  // Sri Lanka & Princess Blue
   { id: '21', title: 'Pearl of the Indian Ocean', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/srilanka-1-version-1.png'},
-  { id: '22', title: 'Blue', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/princess-blue-1-version-1.png' },
 
-  // Silksong
   { id: '23', title: 'Myosotis : : Silksong OC', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/silksong-1-version-1.png' },
   { id: '24', title: 'Ayu : : Silksong OC', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/silksong-2-version-1.png' },
-  { id: '25', title: 'Too Too : : Silksong OC',orientation: 'portrait', medium: "watercolour", tags:["guest star", "texture"], image: '/paintings/portraits/silksong-3-version-1.png', versions: 2 },
+  { id: '25', title: 'Too Too : : Silksong OC',orientation: 'portrait', medium: "texture", tags:["guest star", "texture"], image: '/paintings/portraits/silksong-3-version-1.png', versions: 2 },
   { id: '26', title: 'Horney-poo shaws!', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/silksong-4-version-1.png', versions: 2 },
 
-  // Origami & Doodles
   { id: '27', title: 'Slug', orientation: 'portrait', medium: "origami", category: 'origami', tags:["milindi", "origami"], image: '/paintings/portraits/origami-1-version-1.png', versions: 2 },
   { id: '28', title: 'Favourite Things', medium: "watercolour", tags:["milindi", "watercolour"], orientation: 'portrait', image: '/paintings/portraits/doodles-version-1.png', versions: 2 },
 
-  // Paint and Sip & Spoon
-  { id: '29', title: 'Dancer', orientation: 'portrait', medium: "acrylic", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/paint-and-sip-1-version-1.png' },
   { id: '30', title: 'Tea Spoon', orientation: 'portrait', medium: "wood", tags:["milindi", "wood"], image: '/paintings/portraits/spoon-1-version-1.png' },
 
-  // Tea Party
   { id: '31', title: 'Tea Cup I', orientation: 'portrait', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/tea-party-1-version-1.png' },
   { id: '32', title: 'Tea Cup II - Factorials', orientation: 'portrait', medium: "watercolour", tags:["guest star", "watercolour"], image: '/paintings/portraits/tea-party-2-version-1.png' },
   { id: '33', title: 'Tea Cup III', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/tea-party-3-version-1.png' },
   { id: '34', title: 'Tea Party', orientation: 'portrait', medium: "watercolour", tags:["milindi", "chaamudi", "guest star", "watercolour"], image: '/paintings/portraits/tea-party-4-version-1.png', versions: 2 },
-
-  // Whimsical Fruits (theme spans both folders)
-  { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2 },
-  { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png', versions: 2 },
-
-  // Random
-  { id: '37', title: 'Burnt Out But Survivin', orientation: 'portrait', medium: "pencil", tags:["chaamudi", "pencil"], image: '/paintings/portraits/grumpy-1-version-1.png' },
 
   { id: '38', title: 'Feelings', orientation: 'portrait', medium: "acrylic", tags:["chaamudi", "milindi", "acrylic"], image: '/paintings/portraits/feelings-1-version-1.png', versions: 2},
   { id: '39', title: 'Lights', orientation: 'portrait', medium: "glass paint", tags:["chaamudi", "milindi", "glass paint"], image: '/paintings/portraits/glass-1-version-1.png', versions: 2 },
@@ -160,13 +159,12 @@ export const paintings: Painting[] = [
   { id: '42', title: 'Perpetual third wheel', orientation: 'portrait', medium: "pencil", tags:["milindi", "pencil"], image: '/paintings/portraits/third-wheel-1-version-1.png', versions: 2},
 
   { id: '43', title: 'Carlton Gardens', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/carlton-gardens-1-version-1.png'},
-  { id: '55', title: 'Nuwara Eliya', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/nuwara-eliya-1-version-1.png', versions: 2},
   { id: '44', title: 'Sunrise Through The Years', orientation: 'landscape', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/morning-1-version-1.png', versions: 4},
   { id: '54', title: 'Autumn', orientation: 'portrait', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/portraits/spider-park-1-version-1.png'},
   { id: '56', title: 'Whisps in the wind', orientation: 'landscape', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/landscapes/cloud-1-version-1.png', versions: 3},
+  { id: '58', title: 'Winter', orientation: 'landscape', medium: "photography", category: 'photography', tags:["milindi", "photography"], image: '/paintings/landscapes/winter-1-version-1.png', versions: 2},
 
 
-  { id: '50', title: 'Black Dog & Black Bird', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/black-dog-black-bird-1-version-1.png'},
   { id: '51', title: 'Shapes I', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/shapes-1-version-1.png'},
   { id: '52', title: 'Shapes II', orientation: 'portrait', medium: "pen", tags:["chaamudi", "pen"], image: '/paintings/portraits/shapes-framed-1-version-1.png'},
   { id: '53', title: 'Bored.', orientation: 'portrait', medium: "digital art", tags:["chaamudi", "digital art"], image: '/paintings/portraits/bored-1-version-1.png'},
@@ -176,13 +174,12 @@ export const paintings: Painting[] = [
   // screenshot/thumbnail (drop it in /public/websites/ and reference it here).
   // The detail page embeds the URL in an iframe with an "Open site ↗" fallback.
   { id: '45', title: 'Colourful Language', orientation: 'landscape', category: 'website', url: 'https://colourful-language.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/colourful-lang-1-version-1.png' },
-  { id: '46', title: 'Koho Koho', orientation: 'landscape', category: 'website', url: 'https://koho-koho.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/koho-koho-1-version-1.png', versions: 2 },
   { id: '47', title: '#MugLife', orientation: 'landscape', category: 'website', url: 'https://muglife.github.io/', tags: ['milindi', 'website'], image: '/paintings/landscapes/mug-life-1-version-1.png' },
 
 
   // Zines — set `category: 'zine'`. Use `versions` for multi-page spreads.
   { id: '48', title: '#GuerillaTea', orientation: 'landscape', category: 'zine', tags: ['milindi', 'zine'], image: '/paintings/landscapes/zine-1-version-1.png', versions: 2 },
-  { id: '49', title: 'To my special someone . . .', orientation: 'portrait', category: 'zine', tags: ['chaamudi', 'zine'], image: '/paintings/portraits/zine-2-version-1.png'},
+  { id: '49', title: 'To my special someone . . . .', orientation: 'portrait', category: 'zine', tags: ['chaamudi', 'zine'], image: '/paintings/portraits/zine-2-version-1.png'},
 
   // Clay — set `category: 'clay'`.
   // { id: '47', title: 'Clay Piece', orientation: 'portrait', category: 'clay', tags: ['milindi', 'clay'], image: '/paintings/portraits/clay-1-version-1.png' },
