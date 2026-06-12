@@ -1,5 +1,5 @@
 :root {
-  --bg: #faf3e8;
+  --bg: #ffffff;
   --ink: #1a1a1a;
   --muted: #8a8178;
   --gap: 56px; /* generous horizontal spacing between painting cells */
@@ -15,9 +15,9 @@
   --orange: #de8323;
   --red: #cf5938;
 
-  --mat: #fdf7e7; /* soft cream mat around each painting */
+  --mat: #ffffff; /* mat around each painting */
   --line: #e3dccf; /* warm hairline borders / dividers */
-  --surface: #fffaf0; /* warm input / chip background */
+  --surface: #ffffff; /* input / chip background */
   --gold-soft: #faecc9; /* pale gold tint for selected pills */
   --gold-ink: #5a430f; /* readable dark brown on gold */
 
@@ -563,6 +563,24 @@
   right: 8px;
 }
 
+/* Chevron drawn as a rotated bordered box so it sits dead-centre in the circle. */
+.piece-nav::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: solid currentColor;
+  border-width: 0 0 2px 2px;
+}
+
+.piece-nav.prev::before {
+  transform: translateX(1px) rotate(45deg);
+}
+
+.piece-nav.next::before {
+  transform: translateX(-1px) rotate(225deg);
+}
+
 .piece-nav:hover {
   background: #ffffff;
   color: var(--orange);
@@ -698,18 +716,30 @@
   align-items: start;
 }
 
+/* Portrait pieces are narrow — cap the media column so it doesn't float with big
+   gaps on either side; the details take the remaining width. */
+.work-layout.portrait {
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+}
+
 .work-media {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Cream mat + soft shadow, echoing the gallery frame. */
+/* Cream mat + soft shadow, echoing the gallery frame. Acts as a button that
+   opens the full-size gallery. */
 .work-frame {
-  background: var(--mat);
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(40, 34, 24, 0.18);
+  position: relative;
+  display: block;
+  width: 100%;
   max-width: 100%;
+  padding: 20px;
+  border: none;
+  background: var(--mat);
+  box-shadow: 0 10px 30px rgba(40, 34, 24, 0.18);
+  cursor: zoom-in;
 }
 
 .work-frame img {
@@ -720,8 +750,45 @@
   object-fit: contain;
 }
 
+/* Small "expand" badge hinting the image opens a zoomable gallery. */
+.work-zoom-hint {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--ink);
+  background: rgba(253, 247, 231, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(40, 34, 24, 0.22);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.work-frame:hover .work-zoom-hint,
+.work-frame:focus-visible .work-zoom-hint {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .work-zoom-hint {
+    opacity: 1;
+  }
+}
+
 .work-frame.portrait {
-  max-width: 480px;
+  width: 100%;
+  padding: 16px;
+}
+
+/* Portrait images fill the frame width with their natural aspect (no height cap),
+   so the mat hugs the image and padding stays even on all four sides. */
+.work-frame.portrait img {
+  max-height: none;
 }
 
 .work-frame.landscape {
@@ -855,9 +922,13 @@
 }
 
 @media (max-width: 760px) {
-  .work-layout {
+  .work-layout,
+  .work-layout.portrait {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  .work-media {
+    justify-self: center;
   }
   .work-page {
     padding: 16px 20px 72px;
@@ -870,5 +941,148 @@
   }
   .work-tags {
     justify-content: center;
+  }
+}
+
+/* ---- Fullscreen image gallery (lightbox) ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Backdrop is a full-cover button so clicking outside the image closes it. */
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  background: rgba(26, 22, 16, 0.92);
+  cursor: zoom-out;
+}
+
+.lightbox-stage {
+  position: relative;
+  margin: 0;
+  max-width: 92vw;
+  max-height: 88vh;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.lightbox-img {
+  display: block;
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  cursor: zoom-in;
+  user-select: none;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lightbox-img.zoomed {
+  transform: scale(2.4);
+  /* Snappier follow while panning, but keep the gentle ease on zoom-in/out. */
+  transition: transform 0.08s linear;
+}
+
+/* Controls sit above the backdrop. */
+.lightbox-close,
+.lightbox-nav,
+.lightbox-counter {
+  position: absolute;
+  z-index: 1;
+  color: #fdf7e7;
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-nav.prev {
+  left: 20px;
+}
+
+.lightbox-nav.next {
+  right: 20px;
+}
+
+/* Chevron drawn as a rotated bordered box so it sits dead-centre in the circle. */
+.lightbox-nav::before {
+  content: '';
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: solid currentColor;
+  border-width: 0 0 2.5px 2.5px;
+}
+
+.lightbox-nav.prev::before {
+  transform: translateX(2px) rotate(45deg);
+}
+
+.lightbox-nav.next::before {
+  transform: translateX(-2px) rotate(225deg);
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.lightbox-counter {
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+}
+
+@media (max-width: 600px) {
+  .lightbox-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 26px;
+  }
+  .lightbox-nav.prev {
+    left: 8px;
+  }
+  .lightbox-nav.next {
+    right: 8px;
   }
 }

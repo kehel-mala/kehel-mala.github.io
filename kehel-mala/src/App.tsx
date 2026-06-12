@@ -27,7 +27,7 @@ function formatDate(date?: string): string {
 function placeholder(title: string, orientation: Orientation): string {
   const [w, h] = orientation === 'landscape' ? [842, 595] : [595, 842];
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'>
-    <rect width='100%' height='100%' fill='#ece9e4'/>
+    <rect width='100%' height='100%' fill='#ffffff'/>
     <text x='50%' y='50%' fill='#b3a89a' font-family='Georgia, serif'
       font-size='28' text-anchor='middle' dominant-baseline='middle'>${title}</text>
   </svg>`;
@@ -100,17 +100,13 @@ function GalleryImage({ painting }: { painting: Painting }) {
                 className="piece-nav prev"
                 aria-label="Previous version"
                 onClick={() => go(-1)}
-              >
-                ‹
-              </button>
+              />
               <button
                 type="button"
                 className="piece-nav next"
                 aria-label="Next version"
                 onClick={() => go(1)}
-              >
-                ›
-              </button>
+              />
               <div className="piece-dots">
                 {images.map((src, i) => (
                   <button
@@ -141,11 +137,96 @@ function GalleryImage({ painting }: { painting: Painting }) {
   );
 }
 
+// Fullscreen image gallery: horizontal arrows (or ← → keys) switch between the
+// versions, and moving the cursor over the image zooms into that spot.
+function Lightbox({
+  images,
+  title,
+  startIndex,
+  onClose,
+}: {
+  images: string[];
+  title: string;
+  startIndex: number;
+  onClose: (index: number) => void;
+}) {
+  const [index, setIndex] = useState(startIndex);
+  const [zoomed, setZoomed] = useState(false);
+  const [origin, setOrigin] = useState('50% 50%'); // zoom focal point, kept across fade-out
+  const multiple = images.length > 1;
+
+  const go = (delta: number) => {
+    setZoomed(false);
+    setIndex((i) => (i + delta + images.length) % images.length);
+  };
+
+  // Esc closes; arrow keys navigate. Also lock background scroll while open.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose(index);
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
+    };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [index]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onMove = (e: React.MouseEvent<HTMLImageElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    setOrigin(`${x}% ${y}%`);
+    if (!zoomed) setZoomed(true);
+  };
+
+  return (
+    <div className="lightbox" role="dialog" aria-modal="true" aria-label={title}>
+      <button className="lightbox-backdrop" aria-label="Close gallery" onClick={() => onClose(index)} />
+
+      <button type="button" className="lightbox-close" aria-label="Close" onClick={() => onClose(index)}>
+        ✕
+      </button>
+
+      {multiple && (
+        <button type="button" className="lightbox-nav prev" aria-label="Previous version" onClick={() => go(-1)} />
+      )}
+
+      <figure className="lightbox-stage">
+        <img
+          className={zoomed ? 'lightbox-img zoomed' : 'lightbox-img'}
+          src={images[index]}
+          alt={`${title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
+          style={{ transformOrigin: origin }}
+          onMouseMove={onMove}
+          onMouseLeave={() => setZoomed(false)}
+          draggable={false}
+        />
+      </figure>
+
+      {multiple && (
+        <button type="button" className="lightbox-nav next" aria-label="Next version" onClick={() => go(1)} />
+      )}
+
+      {multiple && (
+        <div className="lightbox-counter">
+          {index + 1} / {images.length}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // The detail page for a single artwork: a large image with a version switcher and
 // the full set of details (medium, date, dimensions, tags, description).
 function WorkPage({ id }: { id: string }) {
   const painting = paintings.find((p) => p.id === id);
   const [index, setIndex] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
 
   if (!painting) {
     return (
@@ -172,15 +253,21 @@ function WorkPage({ id }: { id: string }) {
         ‹ Back to gallery
       </a>
 
-      <div className="work-layout">
+      <div className={`work-layout ${painting.orientation}`}>
         <div className="work-media">
-          <div className={`work-frame ${painting.orientation}`}>
+          <button
+            type="button"
+            className={`work-frame ${painting.orientation}`}
+            onClick={() => setLightbox(true)}
+            aria-label="Open full-size gallery"
+          >
             <img
               src={images[index]}
               alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
               onError={onError}
             />
-          </div>
+            <span className="work-zoom-hint" aria-hidden="true">⤢</span>
+          </button>
 
           {multiple && (
             <div className="work-thumbs" role="tablist" aria-label="Versions">
@@ -249,6 +336,18 @@ function WorkPage({ id }: { id: string }) {
           </a>
         </div>
       </div>
+
+      {lightbox && (
+        <Lightbox
+          images={images}
+          title={painting.title}
+          startIndex={index}
+          onClose={(i) => {
+            setIndex(i);
+            setLightbox(false);
+          }}
+        />
+      )}
     </article>
   );
 }

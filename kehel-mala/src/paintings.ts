@@ -58,8 +58,8 @@ export const paintings: Painting[] = [
 
 
   // Backgrounds
-  { id: '1', title: 'My mother', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["milindi", "acrylic"], image: '/paintings/portraits/background-1-version-1.png' },
-  { id: '2', title: 'Dreamscape', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/background-2-version-1.png' },
+  { id: '1', title: 'Ammi (Mum)', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["milindi", "acrylic"], image: '/paintings/portraits/background-1-version-1.png' },
+  { id: '2', title: 'Radiant Dreamscape', orientation: 'portrait', medium: "acrylic", date:"2025-12", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/background-2-version-1.png' },
 
   // Elements
   { id: '3', title: 'Air', orientation: 'portrait', medium: "acrylic", date:"2025-10", tags:["milindi", "acrylic"], image: '/paintings/portraits/elements-1-version-1.png' },
@@ -75,7 +75,7 @@ export const paintings: Painting[] = [
 
   // Trees & Frogs
   { id: '9', title: 'Chilli', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["milindi", "watercolour"], image: '/paintings/portraits/trees-1-version-1.png' },
-  { id: '10', title: 'Teeny tiny', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/trees-2-version-1.png' },
+  { id: '10', title: 'Pal path', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/trees-2-version-1.png' },
   { id: '11', title: 'Jingle frogs', orientation: 'landscape', medium: "felt", date:"2025-12", tags:["chaamudi", "felt"], image: '/paintings/landscapes/frogs-1-version-1.png' },
 
   // Space
@@ -84,7 +84,7 @@ export const paintings: Painting[] = [
   { id: '14', title: 'Planet', orientation: 'portrait', medium: "texture", date:"2026-1", tags:["chaamudi", "texture"], image: '/paintings/portraits/planet-1-version-1.png' },
   { id: '15', title: 'Alien', orientation: 'portrait', medium: "texture", date:"2026-1", tags:["chaamudi", "texture"], image: '/paintings/portraits/space-alien-1-version-1.png' },
 
-  // Mind Map (theme spans both folders)
+  // Mind Map
   { id: '16', title: 'Mind Map', orientation: 'landscape', medium: "watercolour", date:"2026-2", tags:["chaamudi", "watercolour", "pen"], image: '/paintings/landscapes/mind-map-1-version-1.png' },
   { id: '17', title: 'Darkest timeline', orientation: 'portrait', medium: "pencil", date:"2025-12", tags:["milindi", "pencil"], image: '/paintings/portraits/mind-map-2-version-1.png' },
 
@@ -95,43 +95,43 @@ export const paintings: Painting[] = [
   { id: '40', title: 'Natives at Botanic Gardens III', orientation: 'portrait', medium: "watercolour", date:"2025-11", tags:["milindi", "watercolour"], image: '/paintings/portraits/natives-4-version-1.png'},
 
   // Sri Lanka & Princess Blue
-  { id: '21', title: 'Sri Lanka', orientation: 'portrait', medium: "pen", date:"2024-12", tags:["chaamudi", "pen"], image: '/paintings/portraits/srilanka-1-version-1.png' },
+  { id: '21', title: 'Pearl of the Indian Ocean', orientation: 'portrait', medium: "pen", date:"2024-12", tags:["chaamudi", "pen"], image: '/paintings/portraits/srilanka-1-version-1.png'},
   { id: '22', title: 'Blue', orientation: 'portrait', medium: "pen", date:"2020-08", tags:["chaamudi", "pen"], image: '/paintings/portraits/princess-blue-1-version-1.png' },
 
   // Silksong
-  { id: '23', title: 'Brave Silksong OC', orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/silksong-1-version-1.png' },
-  { id: '24', title: 'Tragic Silksong OC', orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["milindi", "watercolour"], image: '/paintings/portraits/silksong-2-version-1.png' },
-  { id: '25', title: 'Menace of a Silksong OC',orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["guest star", "texture"], image: '/paintings/portraits/silksong-3-version-1.png', versions: 2 },
-  { id: '26', title: 'Best day i.e the three months where we played games nonstop', orientation: 'portrait', medium: "pencil", date:"2026-2", tags:["milindi", "pencil"], image: '/paintings/portraits/silksong-4-version-1.png' },
+  { id: '23', title: 'Myosotis : : Silksong OC', orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/silksong-1-version-1.png' },
+  { id: '24', title: 'Ayu : : Silksong OC', orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["milindi", "watercolour"], image: '/paintings/portraits/silksong-2-version-1.png' },
+  { id: '25', title: 'Too Too : : Silksong OC',orientation: 'portrait', medium: "watercolour", date:"2026-2", tags:["guest star", "texture"], image: '/paintings/portraits/silksong-3-version-1.png', versions: 2 },
+  { id: '26', title: 'Horney-poo shaws!', orientation: 'portrait', medium: "pencil", date:"2026-2", tags:["milindi", "pencil"], image: '/paintings/portraits/silksong-4-version-1.png', versions: 2 },
 
   // Origami & Doodles
   { id: '27', title: 'Slug', orientation: 'portrait', medium: "origami", date:"2026-3", tags:["milindi", "origami"], image: '/paintings/portraits/origami-1-version-1.png', versions: 2 },
-  { id: '28', title: 'Doodles', medium: "watercolour", date:"2025-11", tags:["milindi", "watercolour"], orientation: 'portrait', image: '/paintings/portraits/doodles-version-1.png' },
+  { id: '28', title: 'Favourite Things', medium: "watercolour", date:"2025-11", tags:["milindi", "watercolour"], orientation: 'portrait', image: '/paintings/portraits/doodles-version-1.png', versions: 2 },
 
   // Paint and Sip & Spoon
   { id: '29', title: 'Dancer', orientation: 'portrait', medium: "acrylic", date:"2026-4", tags:["chaamudi", "acrylic"], image: '/paintings/portraits/paint-and-sip-1-version-1.png' },
-  { id: '30', title: 'Tea spoon', orientation: 'portrait', medium: "wood", date:"2026-1", tags:["milindi", "wood"], image: '/paintings/portraits/spoon-1-version-1.png' },
+  { id: '30', title: 'Tea Spoon', orientation: 'portrait', medium: "wood", date:"2026-1", tags:["milindi", "wood"], image: '/paintings/portraits/spoon-1-version-1.png' },
 
   // Tea Party
-  { id: '31', title: 'Tea cup I', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/tea-party-1-version-1.png' },
-  { id: '32', title: 'Tea cup II - Factorials', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["guest star", "watercolour"], image: '/paintings/portraits/tea-party-2-version-1.png' },
-  { id: '33', title: 'Tea cup III', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "watercolour"], image: '/paintings/portraits/tea-party-3-version-1.png' },
-  { id: '34', title: 'Tea Party', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "chaamudi", "guest star", "watercolour"], image: '/paintings/portraits/tea-party-4-version-1.png', versions: 3 },
+  { id: '31', title: 'Tea Cup I', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["chaamudi", "watercolour"], image: '/paintings/portraits/tea-party-1-version-1.png' },
+  { id: '32', title: 'Tea Cup II - Factorials', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["guest star", "watercolour"], image: '/paintings/portraits/tea-party-2-version-1.png' },
+  { id: '33', title: 'Tea Cup III', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "watercolour"], image: '/paintings/portraits/tea-party-3-version-1.png' },
+  { id: '34', title: 'Tea Party', orientation: 'portrait', medium: "watercolour", date:"2026-6", tags:["milindi", "chaamudi", "guest star", "watercolour"], image: '/paintings/portraits/tea-party-4-version-1.png', versions: 2 },
 
   // Whimsical Fruits (theme spans both folders)
   { id: '35', title: 'Whimsical Fruits', orientation: 'landscape', medium: "watercolour", date:"2025-10", tags:["chaamudi", "watercolour"], image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2 },
   { id: '36', title: 'Imposter', orientation: 'portrait', medium: "watercolour", date:"2025-10", tags:["milindi", "watercolour"], image: '/paintings/portraits/whimsicle-fruits-2-version-1.png' },
 
   // Random
-  { id: '37', title: 'Burnt out but survivin', orientation: 'portrait', medium: "pencil", date:"2026-2", tags:["chaamudi", "pencil"], image: '/paintings/portraits/grumpy-1-version-1.png' },
+  { id: '37', title: 'Burnt Out But Survivin', orientation: 'portrait', medium: "pencil", date:"2026-2", tags:["chaamudi", "pencil"], image: '/paintings/portraits/grumpy-1-version-1.png' },
 
   { id: '38', title: 'Feelings', orientation: 'portrait', medium: "acrylic", date:"2025-11", tags:["chaamudi", "milindi", "acrylic"], image: '/paintings/portraits/feelings-1-version-1.png', versions: 2},
   { id: '39', title: 'Lights', orientation: 'portrait', medium: "glass paint", date:"2025-11", tags:["chaamudi", "milindi", "glass paint"], image: '/paintings/portraits/glass-1-version-1.png', versions: 2 },
 
   { id: '41', title: 'Sinhala Hoodiya (Sinhala Alphabet)', orientation: 'portrait', medium: "pen", date:"2026-02", tags:["milindi", "pen"], image: '/paintings/portraits/hoodiya-1-version-1.png' },
-  { id: '42', title: 'Perpetual third wheel', orientation: 'portrait', medium: "pencil", date:"2026-02", tags:["milindi", "pencil"], image: '/paintings/portraits/third-wheel-1-version-1.png'},
+  { id: '42', title: 'Perpetual third wheel', orientation: 'portrait', medium: "pencil", date:"2026-02", tags:["milindi", "pencil"], image: '/paintings/portraits/third-wheel-1-version-1.png', versions: 2},
 
   { id: '43', title: 'Carlton Gardens', orientation: 'portrait', medium: "photography", date:"2025-11", tags:["milindi", "photography"], image: '/paintings/portraits/carlton-gardens-1-version-1.png'},
-  { id: '44', title: 'Sunrise through the years', orientation: 'landscape', medium: "photography", tags:["milindi", "photography"], image: '/paintings/portraits/morning-1-version-1.png', versions: 5},
+  { id: '44', title: 'Sunrise Through The Years', orientation: 'landscape', medium: "photography", tags:["milindi", "photography"], image: '/paintings/portraits/morning-1-version-1.png', versions: 5},
 
 ];
