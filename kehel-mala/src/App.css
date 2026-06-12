@@ -62,7 +62,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 3vw, 28px);
+  gap: 0;
   text-decoration: none;
 }
 
