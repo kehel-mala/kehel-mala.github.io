@@ -654,3 +654,242 @@
     padding: 24px 20px 0;
   }
 }
+
+/* Whole gallery tile is a link to the artwork detail page. */
+.piece-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Small badge marking pieces that have more than one version. */
+.piece-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  background: rgba(253, 247, 231, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(40, 34, 24, 0.18);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.piece:hover .piece-badge {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .piece-badge {
+    opacity: 1;
+  }
+}
+
+/* ---- Artwork detail page ---- */
+.work-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 32px 96px;
+}
+
+.work-back {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.work-back:hover {
+  color: var(--orange);
+}
+
+.work-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.work-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cream mat + soft shadow, echoing the gallery frame. */
+.work-frame {
+  background: var(--mat);
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(40, 34, 24, 0.18);
+  max-width: 100%;
+}
+
+.work-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+.work-frame.portrait {
+  max-width: 480px;
+}
+
+.work-frame.landscape {
+  max-width: 640px;
+}
+
+/* Version thumbnail strip. */
+.work-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.work-thumb {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: none;
+  background: var(--mat);
+  box-shadow: 0 0 0 1px var(--line);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.work-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-thumb:hover {
+  transform: translateY(-2px);
+}
+
+.work-thumb.active {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.work-info {
+  padding-top: 8px;
+}
+
+.work-artist {
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.work-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-title);
+  color: var(--gold);
+  margin: 6px 0 24px;
+}
+
+.work-specs {
+  margin: 0 0 24px;
+  border-top: 1px solid var(--line);
+}
+
+.work-spec {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-spec dt {
+  flex: 0 0 120px;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work-spec dd {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+.work-desc {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.work-tag {
+  padding: 5px 12px;
+  font-size: var(--fs-meta);
+  color: var(--gold-ink);
+  background: var(--gold-soft);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.work-tag:hover {
+  background: var(--gold);
+}
+
+.work-enquire {
+  display: inline-block;
+  padding: 12px 26px;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--orange);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.work-enquire:hover {
+  background: var(--red);
+}
+
+.work-missing {
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .work-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .work-page {
+    padding: 16px 20px 72px;
+  }
+  .work-info {
+    text-align: center;
+  }
+  .work-specs {
+    text-align: left;
+  }
+  .work-tags {
+    justify-content: center;
+  }
+}

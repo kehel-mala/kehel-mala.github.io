@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import { paintings, Painting, Orientation, TAGS, Tag } from './paintings';
 
 type Page = 'about' | 'gallery' | 'contact';
 const PAGES: Page[] = ['about', 'gallery', 'contact'];
+
+// A route is either one of the top-level pages or a single artwork detail view.
+type Route = { kind: 'page'; page: Page } | { kind: 'work'; id: string };
 
 const CONTACT_EMAIL = 'milindi.beeloud@gmail.com';
 
@@ -43,85 +46,156 @@ function versionPaths(image: string, total: number): string[] {
   return paths;
 }
 
+// All image paths for a piece: the primary image plus any explicit variants or
+// numbered `-version-N` files.
+function imagesFor(painting: Painting): string[] {
+  const extra =
+    painting.variants ?? (painting.versions ? versionPaths(painting.image, painting.versions) : []);
+  return [painting.image, ...extra];
+}
+
 function GalleryImage({ painting }: { painting: Painting }) {
-  const extra = painting.variants ?? (painting.versions ? versionPaths(painting.image, painting.versions) : []);
-  const images = [painting.image, ...extra];
-  const [index, setIndex] = useState(0);
-  const multiple = images.length > 1;
-  const touchStartX = useRef<number | null>(null);
-
-  const go = (delta: number) =>
-    setIndex((i) => (i + delta + images.length) % images.length);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); // swipe left → next
-    touchStartX.current = null;
-  };
+  const count = imagesFor(painting).length;
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    img.src = placeholder(painting.title, painting.orientation);
+    e.currentTarget.src = placeholder(painting.title, painting.orientation);
   };
 
   return (
     <figure className={`piece ${painting.orientation}`}>
-      <div className="piece-frame">
-        <div className="piece-stack" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-          <img
-            src={images[index]}
-            alt={`${painting.title}${multiple ? ` (${index + 1} of ${images.length})` : ''}`}
-            loading="lazy"
-            onError={onError}
-          />
+      {/* The whole tile is a link to the artwork's detail page (Outré style). */}
+      <a className="piece-link" href={`#/work/${painting.id}`} aria-label={`View ${painting.title}`}>
+        <div className="piece-frame">
+          <div className="piece-stack">
+            <img src={painting.image} alt={painting.title} loading="lazy" onError={onError} />
+            {count > 1 && (
+              <span className="piece-badge">{count} versions</span>
+            )}
+          </div>
+        </div>
+        <figcaption className="piece-caption">
+          {painting.artist && <span className="piece-artist">{painting.artist}</span>}
+          <span className="piece-title">{painting.title}</span>
+          {(painting.medium || painting.date) && (
+            <span className="piece-meta">
+              {[painting.medium, formatDate(painting.date)].filter(Boolean).join(' · ')}
+            </span>
+          )}
+        </figcaption>
+      </a>
+    </figure>
+  );
+}
+
+// The detail page for a single artwork: a large image with a version switcher and
+// the full set of details (medium, date, dimensions, tags, description).
+function WorkPage({ id }: { id: string }) {
+  const painting = paintings.find((p) => p.id === id);
+  const [index, setIndex] = useState(0);
+
+  if (!painting) {
+    return (
+      <section className="page work-missing">
+        <h2 className="page-title">Work not found</h2>
+        <p className="site-desc">
+          We couldn't find that piece. <a href="#/gallery">Back to the gallery →</a>
+        </p>
+      </section>
+    );
+  }
+
+  const images = imagesFor(painting);
+  const multiple = images.length > 1;
+  const subject = encodeURIComponent(`Enquiry about "${painting.title}"`);
+
+  const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = placeholder(painting.title, painting.orientation);
+  };
+
+  return (
+    <article className="work-page">
+      <a className="work-back" href="#/gallery">
+        ‹ Back to gallery
+      </a>
+
+      <div className="work-layout">
+        <div className="work-media">
+          <div className={`work-frame ${painting.orientation}`}>
+            <img
+              src={images[index]}
+              alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
+              onError={onError}
+            />
+          </div>
 
           {multiple && (
-            <>
-              <button
-                type="button"
-                className="piece-nav prev"
-                aria-label="Previous version"
-                onClick={() => go(-1)}
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                className="piece-nav next"
-                aria-label="Next version"
-                onClick={() => go(1)}
-              >
-                ›
-              </button>
-              <div className="piece-dots">
-                {images.map((src, i) => (
-                  <button
-                    key={src}
-                    type="button"
-                    className={i === index ? 'dot active' : 'dot'}
-                    aria-label={`View version ${i + 1}`}
-                    onClick={() => setIndex(i)}
-                  />
-                ))}
-              </div>
-            </>
+            <div className="work-thumbs" role="tablist" aria-label="Versions">
+              {images.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Version ${i + 1}`}
+                  className={i === index ? 'work-thumb active' : 'work-thumb'}
+                  onClick={() => setIndex(i)}
+                >
+                  <img src={src} alt="" loading="lazy" onError={onError} />
+                </button>
+              ))}
+            </div>
           )}
         </div>
+
+        <div className="work-info">
+          {painting.artist && <span className="work-artist">{painting.artist}</span>}
+          <h2 className="work-title">{painting.title}</h2>
+
+          <dl className="work-specs">
+            {painting.medium && (
+              <div className="work-spec">
+                <dt>Medium</dt>
+                <dd>{painting.medium}</dd>
+              </div>
+            )}
+            {painting.date && (
+              <div className="work-spec">
+                <dt>Created</dt>
+                <dd>{formatDate(painting.date)}</dd>
+              </div>
+            )}
+            {painting.dimensions && (
+              <div className="work-spec">
+                <dt>Dimensions</dt>
+                <dd>{painting.dimensions}</dd>
+              </div>
+            )}
+            {multiple && (
+              <div className="work-spec">
+                <dt>Versions</dt>
+                <dd>{images.length}</dd>
+              </div>
+            )}
+          </dl>
+
+          {painting.description && <p className="work-desc">{painting.description}</p>}
+
+          {painting.tags && painting.tags.length > 0 && (
+            <div className="work-tags">
+              {painting.tags.map((t) => (
+                <a key={t} className="work-tag" href="#/gallery">
+                  {t}
+                </a>
+              ))}
+            </div>
+          )}
+
+          <a className="work-enquire" href={`mailto:${CONTACT_EMAIL}?subject=${subject}`}>
+            Enquire about this piece
+          </a>
+        </div>
       </div>
-      <figcaption className="piece-caption">
-        {painting.artist && <span className="piece-artist">{painting.artist}</span>}
-        <span className="piece-title">{painting.title}</span>
-        {(painting.medium || painting.date) && (
-          <span className="piece-meta">
-            {[painting.medium, formatDate(painting.date)].filter(Boolean).join(' · ')}
-          </span>
-        )}
-      </figcaption>
-    </figure>
+    </article>
   );
 }
 
@@ -317,32 +391,40 @@ function ContactPage() {
   );
 }
 
-// Read the current page from the URL hash (e.g. #/about), defaulting to the gallery.
-function pageFromHash(): Page {
-  const slug = window.location.hash.replace(/^#\/?/, '') as Page;
-  return PAGES.includes(slug) ? slug : 'gallery';
+// Read the current route from the URL hash. '#/work/<id>' opens an artwork detail
+// page; anything else is a top-level page, defaulting to the gallery.
+function routeFromHash(): Route {
+  const raw = window.location.hash.replace(/^#\/?/, '');
+  const work = raw.match(/^work\/(.+)$/);
+  if (work) return { kind: 'work', id: decodeURIComponent(work[1]) };
+  const slug = raw as Page;
+  return { kind: 'page', page: PAGES.includes(slug) ? slug : 'gallery' };
 }
 
 function App() {
-  const [page, setPage] = useState<Page>(pageFromHash());
+  const [route, setRoute] = useState<Route>(routeFromHash());
 
   useEffect(() => {
     const onHashChange = () => {
-      setPage(pageFromHash());
+      setRoute(routeFromHash());
       window.scrollTo(0, 0);
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
+  // A work detail page lives under the gallery, so keep the Gallery nav link active.
+  const navPage: Page = route.kind === 'work' ? 'gallery' : route.page;
+
   return (
     <div className="App">
-      <NavBar page={page} />
+      <NavBar page={navPage} />
 
       <div className="content">
-        {page === 'about' && <AboutPage />}
-        {page === 'gallery' && <GalleryPage />}
-        {page === 'contact' && <ContactPage />}
+        {route.kind === 'work' && <WorkPage key={route.id} id={route.id} />}
+        {route.kind === 'page' && route.page === 'about' && <AboutPage />}
+        {route.kind === 'page' && route.page === 'gallery' && <GalleryPage />}
+        {route.kind === 'page' && route.page === 'contact' && <ContactPage />}
       </div>
 
       <footer className="site-footer">
