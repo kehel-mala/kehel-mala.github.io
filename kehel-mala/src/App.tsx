@@ -820,18 +820,26 @@ function App() {
   // Remember each route's scroll position so returning from a detail page lands
   // back where you left off, while brand-new routes still start at the top.
   const scrollPositions = useRef<Record<string, number>>({});
-  const currentHash = useRef<string>(window.location.hash);
-  // The last gallery section the visitor browsed, so a work's "Back" link returns
-  // to that section (e.g. Zines) rather than always to "All".
-  const lastGalleryCat = useRef<Product | 'all'>(
-    route.kind === 'gallery' ? route.product : 'all',
-  );
+  // Normalise so the bare site root ('') and the home link ('#/') share one
+  // scroll-position key, otherwise returning to Featured resets to the top.
+  const normHash = (h: string) => (h === '' || h === '#' ? '#/' : h);
+  const currentHash = useRef<string>(normHash(window.location.hash));
+  // The last "browse" view the visitor was on — the featured home page or a
+  // gallery section — so a work's "Back" link returns there (e.g. Featured, or
+  // Zines) rather than always to "All".
+  const originFor = (r: Route): { href: string; label: string } =>
+    r.kind === 'home'
+      ? { href: '#/', label: 'featured' }
+      : r.kind === 'gallery'
+        ? { href: galleryHref(r.product), label: galleryLabel(r.product) }
+        : { href: '#/gallery', label: 'gallery' };
+  const lastBrowse = useRef<{ href: string; label: string }>(originFor(route));
 
   useEffect(() => {
     const onHashChange = () => {
       // Stash the scroll position of the page we're leaving before switching.
       scrollPositions.current[currentHash.current] = window.scrollY;
-      currentHash.current = window.location.hash;
+      currentHash.current = normHash(window.location.hash);
       setRoute(routeFromHash());
     };
     window.addEventListener('hashchange', onHashChange);
@@ -846,8 +854,10 @@ function App() {
     return () => cancelAnimationFrame(raf);
   }, [route]);
 
-  // Track the section the visitor is browsing while they're on a gallery view.
-  if (route.kind === 'gallery') lastGalleryCat.current = route.product;
+  // Track the view the visitor is browsing (featured home or a gallery section)
+  // so the detail page's "Back" link can return there.
+  if (route.kind === 'home' || route.kind === 'gallery')
+    lastBrowse.current = originFor(route);
 
   // The gallery and any artwork detail page keep the Gallery nav item active;
   // the home (featured) page highlights nothing.
@@ -864,8 +874,8 @@ function App() {
           <WorkPage
             key={route.id}
             id={route.id}
-            backHref={galleryHref(lastGalleryCat.current)}
-            backLabel={galleryLabel(lastGalleryCat.current)}
+            backHref={lastBrowse.current.href}
+            backLabel={lastBrowse.current.label}
           />
         )}
         {route.kind === 'gallery' && <GalleryPage product={route.product} />}
