@@ -5,21 +5,26 @@ import {
   paintings,
   Painting,
   Orientation,
-  TAGS,
-  Tag,
-  CATEGORIES,
-  Category,
-  DEFAULT_CATEGORY,
+  ARTISTS,
+  TYPES,
+  PRODUCTS,
+  Product,
+  productsOf,
+  productLabel,
+  artistsOf,
+  typesOf,
+  themesOf,
 } from './paintings';
 
 // Top-level nav targets used to highlight the active menu item.
-type Page = 'about' | 'gallery' | 'contact';
+type Page = 'home' | 'about' | 'gallery' | 'contact';
 
-// A route is a top-level page, the gallery (optionally filtered to one category,
-// or 'all'), or a single artwork detail view.
+// A route is the featured landing page, a top-level page, the gallery (optionally
+// filtered to one product, or 'all'), or a single artwork detail view.
 type Route =
+  | { kind: 'home' }
   | { kind: 'page'; page: 'about' | 'contact' }
-  | { kind: 'gallery'; category: Category | 'all' }
+  | { kind: 'gallery'; product: Product | 'all' }
   | { kind: 'work'; id: string };
 
 const CONTACT_EMAIL = 'milindi.beeloud@gmail.com';
@@ -256,7 +261,7 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
   const images = imagesFor(painting);
   const multiple = images.length > 1;
   const subject = encodeURIComponent(`Enquiry about "${painting.title}"`);
-  const isWebsite = painting.category === 'website' && !!painting.url;
+  const isWebsite = productsOf(painting).includes('websites') && !!painting.url;
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = placeholder(painting.title, painting.orientation);
@@ -424,7 +429,7 @@ function NavBar({ page }: { page: Page }) {
 
   return (
     <header className="navbar">
-      <a className="brand" href="#/gallery">
+      <a className="brand" href="#/">
         <span className="brand-text">කෙහෙල් මල</span>
         <img src={logo} alt="kehel mala" />
         <span className="brand-text">kehel mala</span>
@@ -459,14 +464,14 @@ function NavBar({ page }: { page: Page }) {
               <a role="menuitem" href="#/gallery" onClick={() => setOpen(false)}>
                 All
               </a>
-              {CATEGORIES.map((c) => (
+              {PRODUCTS.map((p) => (
                 <a
-                  key={c.id}
+                  key={p.id}
                   role="menuitem"
-                  href={`#/gallery/${c.id}`}
+                  href={`#/gallery/${p.id}`}
                   onClick={() => setOpen(false)}
                 >
-                  {c.label}
+                  {p.label}
                 </a>
               ))}
             </div>
@@ -515,34 +520,112 @@ function AboutPage() {
   );
 }
 
-const ARTIST_TAGS: Tag[] = ['milindi', 'chaamudi', 'guest star'];
-const MEDIUM_TAGS: Tag[] = TAGS.filter((t) => !ARTIST_TAGS.includes(t));
-
 type Sort = 'featured' | 'newest' | 'oldest';
 
-function GalleryPage({ category }: { category: Category | 'all' }) {
+// The four filter axes shown on the "All" page. On a product sub-page the
+// 'product' axis is dropped (it's already fixed to that section).
+type Facet = 'artist' | 'theme' | 'product' | 'type';
+const FACET_LABELS: Record<Facet, string> = {
+  artist: 'Artist',
+  theme: 'Theme',
+  product: 'Product',
+  type: 'Type',
+};
+
+// Read a piece's value(s) along one axis. Products use their id as the value
+// (rendered via the product label); the rest are plain strings.
+function valuesFor(p: Painting, facet: Facet): string[] {
+  switch (facet) {
+    case 'artist':
+      return artistsOf(p);
+    case 'type':
+      return typesOf(p);
+    case 'theme':
+      return themesOf(p);
+    case 'product':
+      return productsOf(p);
+  }
+}
+
+// Canonical display order for a facet's chips (filtered to the values present).
+function orderValues(facet: Facet, present: Set<string>): string[] {
+  switch (facet) {
+    case 'artist':
+      return ARTISTS.filter((a) => present.has(a));
+    case 'type':
+      return TYPES.filter((t) => present.has(t));
+    case 'product':
+      return PRODUCTS.map((p) => p.id).filter((id) => present.has(id));
+    case 'theme':
+      return Array.from(present).sort((a, b) => a.localeCompare(b));
+  }
+}
+
+function valueLabel(facet: Facet, value: string): string {
+  return facet === 'product' ? productLabel(value as Product) : value;
+}
+
+function GalleryPage({ product }: { product: Product | 'all' }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Tag[]>([]);
+  // Selected filters keyed as 'facet:value' so the same value can't collide
+  // across axes.
+  const [selected, setSelected] = useState<string[]>([]);
   const [sort, setSort] = useState<Sort>('featured');
 
-  const toggle = (t: Tag) =>
-    setSelected((s) => (s.includes(t) ? s.filter((x) => x !== t) : [...s, t]));
+  // Reset the filters whenever the visitor switches Gallery sections.
+  useEffect(() => {
+    setSelected([]);
+    setOpen(false);
+  }, [product]);
 
-  const selArtists = selected.filter((t) => ARTIST_TAGS.includes(t));
-  const selMediums = selected.filter((t) => MEDIUM_TAGS.includes(t));
+  const key = (f: Facet, v: string) => `${f}:${v}`;
+  const toggle = (f: Facet, v: string) =>
+    setSelected((s) =>
+      s.includes(key(f, v)) ? s.filter((x) => x !== key(f, v)) : [...s, key(f, v)],
+    );
 
   const heading =
-    category === 'all' ? 'Gallery' : CATEGORIES.find((c) => c.id === category)?.label ?? 'Gallery';
+    product === 'all' ? 'Gallery' : productLabel(product);
 
-  // First narrow to the selected type, then apply the tag filters.
-  // Within a group, match ANY selected tag; across groups, match ALL groups (Outré-style).
-  const filtered = paintings.filter((p) => {
-    if (category !== 'all' && (p.category ?? DEFAULT_CATEGORY) !== category) return false;
-    const tags = p.tags ?? [];
-    const artistOk = selArtists.length === 0 || selArtists.some((t) => tags.includes(t));
-    const mediumOk = selMediums.length === 0 || selMediums.some((t) => tags.includes(t));
-    return artistOk && mediumOk;
-  });
+  // The works in scope for this page (before tag filters): everything on "All",
+  // otherwise just the chosen product.
+  const base = paintings.filter((p) => product === 'all' || productsOf(p).includes(product));
+
+  // Which facets to show. 'product' only makes sense on the "All" page.
+  const facets: Facet[] =
+    product === 'all' ? ['artist', 'theme', 'product', 'type'] : ['artist', 'theme', 'type'];
+
+  // Only offer chips for values that actually appear in the works on this page —
+  // e.g. no "photography" chip on the Zines page if no zine is a photo.
+  const available: Record<Facet, string[]> = {
+    artist: [],
+    theme: [],
+    product: [],
+    type: [],
+  };
+  for (const f of facets) {
+    const present = new Set<string>();
+    base.forEach((p) => valuesFor(p, f).forEach((v) => present.add(v)));
+    available[f] = orderValues(f, present);
+  }
+
+  // Group the active selections by facet.
+  const selByFacet: Partial<Record<Facet, string[]>> = {};
+  for (const s of selected) {
+    const idx = s.indexOf(':');
+    const f = s.slice(0, idx) as Facet;
+    const v = s.slice(idx + 1);
+    (selByFacet[f] ??= []).push(v);
+  }
+
+  // Within an axis, match ANY selected value; across axes, match ALL (Outré-style).
+  const filtered = base.filter((p) =>
+    (Object.entries(selByFacet) as [Facet, string[]][]).every(([f, vals]) => {
+      if (!vals.length) return true;
+      const pv = valuesFor(p, f);
+      return vals.some((v) => pv.includes(v));
+    }),
+  );
 
   // 'featured' keeps the paintings.ts array order; otherwise sort by date.
   const visible =
@@ -553,18 +636,21 @@ function GalleryPage({ category }: { category: Category | 'all' }) {
           return sort === 'newest' ? -cmp : cmp;
         });
 
-  const renderChips = (group: Tag[]) =>
-    group.map((t) => (
+  const renderChips = (facet: Facet) =>
+    available[facet].map((v) => (
       <button
-        key={t}
+        key={v}
         type="button"
-        className={selected.includes(t) ? 'filter-chip active' : 'filter-chip'}
-        aria-pressed={selected.includes(t)}
-        onClick={() => toggle(t)}
+        className={selected.includes(key(facet, v)) ? 'filter-chip active' : 'filter-chip'}
+        aria-pressed={selected.includes(key(facet, v))}
+        onClick={() => toggle(facet, v)}
       >
-        {t}
+        {valueLabel(facet, v)}
       </button>
     ));
+
+  // Only render filter sections that have at least one chip to show.
+  const shownFacets = facets.filter((f) => available[f].length > 0);
 
   return (
     <main className="gallery-page">
@@ -575,6 +661,7 @@ function GalleryPage({ category }: { category: Category | 'all' }) {
             type="button"
             className="filter-toggle"
             aria-expanded={open}
+            disabled={shownFacets.length === 0}
             onClick={() => setOpen((o) => !o)}
           >
             Filter{selected.length ? ` (${selected.length})` : ''}
@@ -599,27 +686,32 @@ function GalleryPage({ category }: { category: Category | 'all' }) {
           </div>
         </div>
 
-        {open && (
+        {open && shownFacets.length > 0 && (
           <div className="filter-panel">
-            <div className="filter-group">
-              <h3 className="filter-heading">Artist</h3>
-              <div className="filter-chips">{renderChips(ARTIST_TAGS)}</div>
-            </div>
-            <div className="filter-group">
-              <h3 className="filter-heading">Medium</h3>
-              <div className="filter-chips">{renderChips(MEDIUM_TAGS)}</div>
-            </div>
+            {shownFacets.map((f) => (
+              <div className="filter-group" key={f}>
+                <h3 className="filter-heading">{FACET_LABELS[f]}</h3>
+                <div className="filter-chips">{renderChips(f)}</div>
+              </div>
+            ))}
           </div>
         )}
 
         {selected.length > 0 && (
           <div className="applied-filters">
             <span className="applied-label">Applied:</span>
-            {selected.map((t) => (
-              <button key={t} type="button" className="applied-pill" onClick={() => toggle(t)}>
-                {t} <span aria-hidden="true">✕</span>
-              </button>
-            ))}
+            {(Object.entries(selByFacet) as [Facet, string[]][]).flatMap(([f, vals]) =>
+              vals.map((v) => (
+                <button
+                  key={key(f, v)}
+                  type="button"
+                  className="applied-pill"
+                  onClick={() => toggle(f, v)}
+                >
+                  {valueLabel(f, v)} <span aria-hidden="true">✕</span>
+                </button>
+              )),
+            )}
             <button type="button" className="clear-all" onClick={() => setSelected([])}>
               Clear all
             </button>
@@ -629,7 +721,7 @@ function GalleryPage({ category }: { category: Category | 'all' }) {
 
       {visible.length === 0 ? (
         <p className="no-results">
-          {selected.length === 0 && category !== 'all'
+          {selected.length === 0 && product !== 'all'
             ? 'Nothing here yet — check back soon.'
             : 'No works match these filters.'}
         </p>
@@ -639,6 +731,47 @@ function GalleryPage({ category }: { category: Category | 'all' }) {
             <GalleryImage key={p.id} painting={p} />
           ))}
         </div>
+      )}
+    </main>
+  );
+}
+
+// The featured landing page (reached by clicking the logo). Outré-style: a row
+// of featured pieces per product section, each linking through to its section.
+function HomePage() {
+  const sections = PRODUCTS.map((prod) => ({
+    prod,
+    items: paintings.filter((p) => p.featured && productsOf(p).includes(prod.id)),
+  })).filter((s) => s.items.length > 0);
+
+  return (
+    <main className="home">
+      <section className="home-intro">
+        <h2 className="page-title">Featured</h2>
+        <p className="site-desc">
+          Have a slip slap slop through the colours from <span className="accent">akki</span> &{' '}
+          <span className="accent">nangi</span> times 🍌
+        </p>
+      </section>
+
+      {sections.length === 0 ? (
+        <p className="no-results">Nothing featured yet — explore the <a href="#/gallery">gallery →</a></p>
+      ) : (
+        sections.map(({ prod, items }) => (
+          <section className="home-section" key={prod.id}>
+            <div className="home-section-head">
+              <h3 className="home-section-title">{prod.label}</h3>
+              <a className="home-section-link" href={`#/gallery/${prod.id}`}>
+                View all {prod.label} →
+              </a>
+            </div>
+            <div className="gallery home-row">
+              {items.map((p) => (
+                <GalleryImage key={p.id} painting={p} />
+              ))}
+            </div>
+          </section>
+        ))
       )}
     </main>
   );
@@ -661,25 +794,25 @@ function ContactPage() {
 // page; anything else is a top-level page, defaulting to the gallery.
 function routeFromHash(): Route {
   const raw = window.location.hash.replace(/^#\/?/, '');
+  if (raw === '') return { kind: 'home' };
   const work = raw.match(/^work\/(.+)$/);
   if (work) return { kind: 'work', id: decodeURIComponent(work[1]) };
   if (raw === 'about') return { kind: 'page', page: 'about' };
   if (raw === 'contact') return { kind: 'page', page: 'contact' };
-  // '#/gallery' (all) or '#/gallery/<category>' (one type).
+  // '#/gallery' (all) or '#/gallery/<product>' (one section).
   const gal = raw.match(/^gallery(?:\/([\w-]+))?$/);
-  const cat = gal?.[1];
-  const valid = CATEGORIES.some((c) => c.id === cat);
-  return { kind: 'gallery', category: valid ? (cat as Category) : 'all' };
+  const prod = gal?.[1];
+  const valid = PRODUCTS.some((p) => p.id === prod);
+  return { kind: 'gallery', product: valid ? (prod as Product) : 'all' };
 }
 
-// The gallery URL and human label for a category (used by the detail page's
+// The gallery URL and human label for a product (used by the detail page's
 // "Back to …" link so it returns to the section the visitor came from).
-function galleryHref(category: Category | 'all'): string {
-  return category === 'all' ? '#/gallery' : `#/gallery/${category}`;
+function galleryHref(product: Product | 'all'): string {
+  return product === 'all' ? '#/gallery' : `#/gallery/${product}`;
 }
-function galleryLabel(category: Category | 'all'): string {
-  if (category === 'all') return 'gallery';
-  return CATEGORIES.find((c) => c.id === category)?.label ?? 'gallery';
+function galleryLabel(product: Product | 'all'): string {
+  return product === 'all' ? 'gallery' : productLabel(product);
 }
 
 function App() {
@@ -688,10 +821,10 @@ function App() {
   // back where you left off, while brand-new routes still start at the top.
   const scrollPositions = useRef<Record<string, number>>({});
   const currentHash = useRef<string>(window.location.hash);
-  // The last gallery category the visitor browsed, so a work's "Back" link returns
-  // to that section (e.g. Photography) rather than always to "All".
-  const lastGalleryCat = useRef<Category | 'all'>(
-    route.kind === 'gallery' ? route.category : 'all',
+  // The last gallery section the visitor browsed, so a work's "Back" link returns
+  // to that section (e.g. Zines) rather than always to "All".
+  const lastGalleryCat = useRef<Product | 'all'>(
+    route.kind === 'gallery' ? route.product : 'all',
   );
 
   useEffect(() => {
@@ -714,16 +847,19 @@ function App() {
   }, [route]);
 
   // Track the section the visitor is browsing while they're on a gallery view.
-  if (route.kind === 'gallery') lastGalleryCat.current = route.category;
+  if (route.kind === 'gallery') lastGalleryCat.current = route.product;
 
-  // The gallery and any artwork detail page keep the Gallery nav item active.
-  const navPage: Page = route.kind === 'page' ? route.page : 'gallery';
+  // The gallery and any artwork detail page keep the Gallery nav item active;
+  // the home (featured) page highlights nothing.
+  const navPage: Page =
+    route.kind === 'page' ? route.page : route.kind === 'home' ? 'home' : 'gallery';
 
   return (
     <div className="App">
       <NavBar page={navPage} />
 
       <div className="content">
+        {route.kind === 'home' && <HomePage />}
         {route.kind === 'work' && (
           <WorkPage
             key={route.id}
@@ -732,7 +868,7 @@ function App() {
             backLabel={galleryLabel(lastGalleryCat.current)}
           />
         )}
-        {route.kind === 'gallery' && <GalleryPage category={route.category} />}
+        {route.kind === 'gallery' && <GalleryPage product={route.product} />}
         {route.kind === 'page' && route.page === 'about' && <AboutPage />}
         {route.kind === 'page' && route.page === 'contact' && <ContactPage />}
       </div>
