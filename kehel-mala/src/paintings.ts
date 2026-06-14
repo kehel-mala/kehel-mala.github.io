@@ -163,19 +163,6 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/flowers-1-version-1.png', versions: 2
   },
   {
-      id: '4',
-      title: 'Hot Air Balloons',
-      medium: 'photography',
-      date: '',
-      dimensions: '',
-      description: '',
-      tags: ['photography'],
-      products: ['prints'],
-      themes: [],
-      orientation: 'landscape',
-      image: '/paintings/landscapes/hot-air-balloons-1-version-1.png'
-  },
-  {
       id: '5',
       title: 'Kude',
       medium: '',
@@ -212,7 +199,7 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'landscape',
-      image: '/paintings/portraits/morning-1-version-1.png', versions: 4
+      image: '/paintings/landscapes/morning-1-version-1.png', versions: 8
   },
   {
       id: '8',
@@ -229,7 +216,7 @@ export const paintings: Painting[] = [
   },
   {
       id: '9',
-      title: 'Nuwara Eliya II',
+      title: 'Tea Estates',
       medium: 'photography',
       date: '',
       dimensions: '',
@@ -238,7 +225,7 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'landscape',
-      image: '/paintings/landscapes/nuwara-eliya-2-version-1.png', versions: 3
+      image: '/paintings/landscapes/nuwara-eliya-2-version-1.png', versions: 2
   },
   {
       id: '10',
@@ -264,7 +251,7 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'landscape',
-      image: '/paintings/landscapes/sigiriya-1-version-1.png'
+      image: '/paintings/landscapes/sigiriya-2-version-1.png'
   },
   {
       id: '12',
@@ -291,11 +278,12 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'landscape',
-      image: '/paintings/landscapes/winter-1-version-1.png'
+      image: '/paintings/landscapes/winter-1-version-1.png',
+      versions: 2
   },
   {
       id: '14',
-      title: 'Yaaya',
+      title: 'wel yaaya',
       medium: 'photography',
       date: '',
       dimensions: '',
@@ -442,7 +430,7 @@ export const paintings: Painting[] = [
   // ── Prints ──
   {
       id: '24',
-      title: 'Ammi',
+      title: 'ammi',
       medium: 'acrylic',
       date: '',
       dimensions: '',
@@ -608,7 +596,7 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/fitzroy-gardens-1-version-1.png', versions: 2
+      image: '/paintings/portraits/fitzroy-gardens-1-version-1.png'
   },
   {
       id: '37',
@@ -621,7 +609,7 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/flagstaff-garden-1-version-1.png'
+      image: '/paintings/portraits/flagstaff-gardens-1-version-1.png'
   },
   {
       id: '38',
@@ -690,8 +678,8 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/hoodiya-1-version-1.png'
   },
   {
-      id: '43',
-      title: 'Hot Air Balloon II',
+      id: '4',
+      title: 'Hot Air Balloons',
       medium: 'photography',
       date: '',
       dimensions: '',
@@ -700,11 +688,12 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/hot-air-balloon-2-version-1.png'
+      image: '/paintings/portraits/hot-air-balloons-2-version-1.png',
+      versions: 2
   },
   {
-      id: '44',
-      title: 'Hot Air Balloon (Home)',
+      id: '43',
+      title: 'In the air',
       medium: 'photography',
       date: '',
       dimensions: '',
@@ -713,7 +702,8 @@ export const paintings: Painting[] = [
       products: ['prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/hot-air-balloon-home-1-version-1.png'
+      image: '/paintings/portraits/hot-air-balloons-1-version-1.png',
+      versions: 2
   },
   {
       id: '45',
@@ -1056,19 +1046,6 @@ export const paintings: Painting[] = [
       themes: ['Sri Lanka'],
       orientation: 'portrait',
       image: '/paintings/portraits/srilanka-1-version-1.png'
-  },
-  {
-      id: '71',
-      title: 'Tea Estate',
-      medium: 'photography',
-      date: '',
-      dimensions: '',
-      description: '',
-      tags: ['photography'],
-      products: ['prints'],
-      themes: [],
-      orientation: 'portrait',
-      image: '/paintings/portraits/tea-estate-1-version-1.png'
   },
   {
       id: '72',
