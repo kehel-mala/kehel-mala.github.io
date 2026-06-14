@@ -747,7 +747,7 @@ function HomePage() {
   return (
     <main className="home">
       <section className="home-intro">
-        <h2 className="page-title">Featured</h2>
+        <h2 className="page-title">Our favs!</h2>
         <p className="site-desc">
           Have a slip slap slop through the colours from <span className="accent">akki</span> &{' '}
           <span className="accent">nangi</span> times 🍌
