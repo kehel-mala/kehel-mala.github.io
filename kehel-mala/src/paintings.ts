@@ -177,20 +177,6 @@ export const paintings: Painting[] = [
   },
   {
       id: '5',
-      title: 'Kehel Mala',
-      medium: 'website',
-      date: '',
-      dimensions: '',
-      description: '',
-      tags: [],
-      products: ['prints'],
-      themes: [],
-      url: 'https://kehel-mala.github.io/',
-      orientation: 'landscape',
-      image: '/paintings/landscapes/kehel-mala-1-version-1.png', versions: 2
-  },
-  {
-      id: '6',
       title: 'Kude',
       medium: '',
       date: '',
@@ -203,7 +189,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/kude-1-version-1.png'
   },
   {
-      id: '7',
+      id: '6',
       title: 'Mind Map',
       medium: 'watercolour',
       date: '',
@@ -216,7 +202,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/mind-map-1-version-1.png'
   },
   {
-      id: '8',
+      id: '7',
       title: 'Sunrise Through The Years',
       medium: 'photography',
       date: '',
@@ -229,7 +215,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/morning-1-version-1.png', versions: 4
   },
   {
-      id: '9',
+      id: '8',
       title: 'New Year CBD',
       medium: 'photography',
       date: '',
@@ -242,7 +228,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/new-year-cbd-1-version-1.png'
   },
   {
-      id: '10',
+      id: '9',
       title: 'Nuwara Eliya II',
       medium: 'photography',
       date: '',
@@ -255,7 +241,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/nuwara-eliya-2-version-1.png', versions: 3
   },
   {
-      id: '11',
+      id: '10',
       title: 'Sky',
       medium: 'watercolour',
       date: '',
@@ -268,7 +254,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/purple-sky-1-version-1.png'
   },
   {
-      id: '12',
+      id: '11',
       title: 'Sigiriya',
       medium: 'photography',
       date: '',
@@ -281,7 +267,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/sigiriya-1-version-1.png'
   },
   {
-      id: '13',
+      id: '12',
       title: 'Whimsical Fruits',
       medium: 'watercolour',
       date: '',
@@ -295,7 +281,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2
   },
   {
-      id: '14',
+      id: '13',
       title: 'Winter',
       medium: 'photography',
       date: '',
@@ -308,7 +294,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/winter-1-version-1.png'
   },
   {
-      id: '15',
+      id: '14',
       title: 'Yaaya',
       medium: 'photography',
       date: '',
@@ -323,7 +309,7 @@ export const paintings: Painting[] = [
 
   // ── Websites ──
   {
-      id: '16',
+      id: '15',
       title: 'Colourful Language',
       medium: 'website',
       date: '',
@@ -335,6 +321,20 @@ export const paintings: Painting[] = [
       url: 'https://colourful-language.github.io/',
       orientation: 'landscape',
       image: '/paintings/landscapes/colourful-lang-1-version-1.png'
+  },
+  {
+      id: '16',
+      title: 'Kehel Mala',
+      medium: 'website',
+      date: '',
+      dimensions: '',
+      description: '',
+      tags: [],
+      products: ['websites'],
+      themes: [],
+      url: 'https://kehel-mala.github.io/',
+      orientation: 'landscape',
+      image: '/paintings/landscapes/kehel-mala-1-version-1.png', versions: 2
   },
   {
       id: '17',
