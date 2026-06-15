@@ -1,6 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
-import logo from './logo.svg';
+// High-res raster logo. The original logo.svg embeds rasters recoloured via SVG
+// <filter>s, which iOS Safari rasterises at low resolution → blurry on iPhone.
+// A plain PNG renders crisply on every device.
+import logo from './logo.png';
 import {
   paintings,
   Painting,
