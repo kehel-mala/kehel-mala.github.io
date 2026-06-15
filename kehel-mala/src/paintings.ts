@@ -237,7 +237,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/autumn-1-version-1.png'
+      image: '/paintings/landscapes/autumn-1-version-1.jpg'
   },
   {
       id: '9',
@@ -250,7 +250,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['city', 'sky'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/new-year-cbd-1-version-1.png'
+      image: '/paintings/landscapes/new-year-cbd-1-version-1.jpg'
   },
   {
       id: '10',
@@ -263,7 +263,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['Sri Lanka', 'nature'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/sigiriya-2-version-1.png'
+      image: '/paintings/landscapes/sigiriya-2-version-1.jpg'
   },
   {
       id: '11',
@@ -276,7 +276,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['sky', 'sunrise', 'city'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/morning-1-version-1.png', versions: 8
+      image: '/paintings/landscapes/morning-1-version-1.jpg', versions: 8
   },
   {
       id: '12',
@@ -289,7 +289,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature', 'tea', 'Sri Lanka'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/nuwara-eliya-2-version-1.png', versions: 2
+      image: '/paintings/landscapes/nuwara-eliya-2-version-1.jpg', versions: 2
   },
   {
       id: '13',
@@ -302,7 +302,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature', 'Sri Lanka'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/yaaya-1-version-1.png'
+      image: '/paintings/landscapes/yaaya-1-version-1.jpg'
   },
   {
       id: '14',
@@ -315,7 +315,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['sky', 'sunrise', 'city'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/cloud-1-version-1.png', versions: 3
+      image: '/paintings/landscapes/cloud-1-version-1.jpg', versions: 3
   },
   {
       id: '15',
@@ -328,7 +328,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature'],
       orientation: 'landscape',
-      image: '/paintings/landscapes/winter-1-version-1.png', versions: 2
+      image: '/paintings/landscapes/winter-1-version-1.jpg', versions: 2
   },
 
   // ── Websites ──
@@ -1081,7 +1081,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature'],
       orientation: 'portrait',
-      image: '/paintings/portraits/spider-park-1-version-1.png'
+      image: '/paintings/portraits/spider-park-1-version-1.jpg'
   },
   {
       id: '72',
@@ -1094,7 +1094,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/h&m-1-version-1.png'
+      image: '/paintings/portraits/h&m-1-version-1.jpg'
   },
   {
       id: '73',
@@ -1107,7 +1107,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature'],
       orientation: 'portrait',
-      image: '/paintings/portraits/carlton-gardens-1-version-1.png'
+      image: '/paintings/portraits/carlton-gardens-1-version-1.jpg'
   },
   {
       id: '74',
@@ -1120,7 +1120,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/fitzroy-gardens-1-version-1.png'
+      image: '/paintings/portraits/fitzroy-gardens-1-version-1.jpg'
   },
   {
       id: '75',
@@ -1133,7 +1133,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/flagstaff-gardens-1-version-1.png'
+      image: '/paintings/portraits/flagstaff-gardens-1-version-1.jpg'
   },
   {
       id: '76',
@@ -1146,7 +1146,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['nature'],
       orientation: 'portrait',
-      image: '/paintings/portraits/natives-1-version-1.png'
+      image: '/paintings/portraits/natives-1-version-1.jpg'
   },
   {
       id: '77',
@@ -1159,7 +1159,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/hot-air-balloons-2-version-1.png', versions: 2
+      image: '/paintings/portraits/hot-air-balloons-2-version-1.jpg', versions: 2
   },
   {
       id: '78',
@@ -1172,7 +1172,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/hot-air-balloons-1-version-1.png', versions: 2
+      image: '/paintings/portraits/hot-air-balloons-1-version-1.jpg', versions: 2
   },
   {
       id: '79',
@@ -1185,7 +1185,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/mornington-1-version-1.png'
+      image: '/paintings/portraits/mornington-1-version-1.jpg'
   },
   {
       id: '80',
@@ -1199,7 +1199,7 @@ export const paintings: Painting[] = [
       themes: ['Sri Lanka'],
       featured: true,
       orientation: 'portrait',
-      image: '/paintings/portraits/nuwara-eliya-1-version-1.png', versions: 5
+      image: '/paintings/portraits/nuwara-eliya-1-version-1.jpg', versions: 5
   },
   {
       id: '81',
@@ -1212,7 +1212,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/pinnawala-1-version-1.png'
+      image: '/paintings/portraits/pinnawala-1-version-1.jpg'
   },
   {
       id: '82',
@@ -1225,7 +1225,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/landscapes/screaming-tree-1-version-1.png'
+      image: '/paintings/landscapes/screaming-tree-1-version-1.jpg'
   },
   {
       id: '83',
@@ -1238,7 +1238,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: [],
       orientation: 'portrait',
-      image: '/paintings/portraits/sigiriya-1-version-1.png'
+      image: '/paintings/portraits/sigiriya-1-version-1.jpg'
   },
 
   // ── Zines ──
