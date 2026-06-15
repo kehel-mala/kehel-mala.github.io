@@ -33,11 +33,11 @@ export type Tag = Artist | ArtType;
 
 // Product — the physical form(s). Drives the Gallery sub-menu. A piece can
 // belong to MORE than one (e.g. a design sold as both a Print and a Tea Towel),
-// so it's a list; an empty/omitted list falls back to 'paintings'. "Photo prints"
+// so it's a list; an empty/omitted list falls back to 'paintings'. "Photo Prints"
 // holds the photography; "Other" is the catch-all for felt, wood, clay, etc.
 export const PRODUCTS = [
   { id: 'paintings', label: 'Paintings' },
-  { id: 'photo-prints', label: 'Photo prints' },
+  { id: 'photo-prints', label: 'Photo Prints' },
   { id: 'tea-towels', label: 'Tea Towels' },
   { id: 'websites', label: 'Websites' },
   { id: 'zines', label: 'Zines' },
@@ -71,7 +71,7 @@ export interface Painting {
    */
   products?: Product[];
   /**
-   * Free-text subject themes (the "Theme" filter), e.g. ['Tea', 'Sri Lanka'].
+   * Free-text subject themes (the "Theme" filter), e.g. ['tea', 'Sri Lanka'].
    * Add your own — whatever strings you use here become the Theme chips, and a
    * theme only appears on a page if a piece on that page carries it.
    */
@@ -225,7 +225,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/whimsicle-fruits-1-version-1.png', versions: 2
   },
 
-  // ── Photo prints ──
+  // ── Photo Prints ──
   {
       id: '8',
       title: 'Autumn',
@@ -473,7 +473,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'texture'],
       products: ['paintings'],
-      themes: ['Space'],
+      themes: ['space'],
       orientation: 'portrait',
       image: '/paintings/portraits/space-alien-1-version-1.png'
   },
@@ -684,7 +684,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: ['Space'],
+      themes: ['space'],
       orientation: 'portrait',
       image: '/paintings/portraits/galaxy-1-version-1.png'
   },
@@ -881,7 +881,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'texture'],
       products: ['paintings'],
-      themes: ['Space'],
+      themes: ['space'],
       orientation: 'portrait',
       image: '/paintings/portraits/planet-1-version-1.png'
   },
@@ -986,7 +986,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/tea-party-1-version-1.png'
   },
@@ -999,7 +999,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['guest star', 'watercolour'],
       products: ['paintings'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/tea-party-2-version-1.png'
   },
@@ -1012,7 +1012,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'watercolour'],
       products: ['paintings'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/tea-party-3-version-1.png'
   },
@@ -1025,7 +1025,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'chaamudi', 'guest star', 'watercolour', 'digital art'],
       products: ['paintings'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/tea-party-4-version-1.png', versions: 2
   },
@@ -1069,7 +1069,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/elements-2-version-1.png'
   },
 
-  // ── Photo prints ──
+  // ── Photo Prints ──
   {
       id: '71',
       title: 'Autumn',
@@ -1251,7 +1251,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-1-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-1-version-2.png', '/paintings/portraits/zine-guerilla-tea-1-version-3.png', '/paintings/portraits/zine-guerilla-tea-1-version-4.png', '/paintings/portraits/zine-guerilla-tea-1-version-5.png', '/paintings/portraits/zine-guerilla-tea-1-version-6.png', '/paintings/portraits/zine-guerilla-tea-1-version-7.png', '/paintings/portraits/zine-guerilla-tea-1-version-8.png', '/paintings/portraits/zine-guerilla-tea-1-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1264,7 +1264,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-2-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-2-version-2.png', '/paintings/portraits/zine-guerilla-tea-2-version-3.png', '/paintings/portraits/zine-guerilla-tea-2-version-4.png', '/paintings/portraits/zine-guerilla-tea-2-version-5.png', '/paintings/portraits/zine-guerilla-tea-2-version-6.png', '/paintings/portraits/zine-guerilla-tea-2-version-7.png', '/paintings/portraits/zine-guerilla-tea-2-version-8.png', '/paintings/portraits/zine-guerilla-tea-2-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1277,7 +1277,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-3-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-3-version-2.png', '/paintings/portraits/zine-guerilla-tea-3-version-3.png', '/paintings/portraits/zine-guerilla-tea-3-version-4.png', '/paintings/portraits/zine-guerilla-tea-3-version-5.png', '/paintings/portraits/zine-guerilla-tea-3-version-6.png', '/paintings/portraits/zine-guerilla-tea-3-version-7.png', '/paintings/portraits/zine-guerilla-tea-3-version-8.png', '/paintings/portraits/zine-guerilla-tea-3-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1290,7 +1290,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-4-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-4-version-2.png', '/paintings/portraits/zine-guerilla-tea-4-version-3.png', '/paintings/portraits/zine-guerilla-tea-4-version-4.png', '/paintings/portraits/zine-guerilla-tea-4-version-5.png', '/paintings/portraits/zine-guerilla-tea-4-version-6.png', '/paintings/portraits/zine-guerilla-tea-4-version-7.png', '/paintings/portraits/zine-guerilla-tea-4-version-8.png', '/paintings/portraits/zine-guerilla-tea-4-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1303,7 +1303,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-5-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-5-version-2.png', '/paintings/portraits/zine-guerilla-tea-5-version-3.png', '/paintings/portraits/zine-guerilla-tea-5-version-4.png', '/paintings/portraits/zine-guerilla-tea-5-version-5.png', '/paintings/portraits/zine-guerilla-tea-5-version-6.png', '/paintings/portraits/zine-guerilla-tea-5-version-7.png', '/paintings/portraits/zine-guerilla-tea-5-version-8.png', '/paintings/portraits/zine-guerilla-tea-5-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1316,7 +1316,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: [],
       products: ['zines'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/zine-guerilla-tea-6-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-6-version-2.png', '/paintings/portraits/zine-guerilla-tea-6-version-3.png', '/paintings/portraits/zine-guerilla-tea-6-version-4.png', '/paintings/portraits/zine-guerilla-tea-6-version-5.png', '/paintings/portraits/zine-guerilla-tea-6-version-6.png', '/paintings/portraits/zine-guerilla-tea-6-version-7.png', '/paintings/portraits/zine-guerilla-tea-6-version-8.png', '/paintings/portraits/zine-guerilla-tea-6-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
@@ -1329,7 +1329,7 @@ export const paintings: Painting[] = [
 //       description: '',
 //       tags: [],
 //       products: ['zines'],
-//       themes: ['Tea'],
+//       themes: ['tea'],
 //       orientation: 'portrait',
 //       image: '/paintings/portraits/zine-guerilla-tea-7-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-7-version-2.png', '/paintings/portraits/zine-guerilla-tea-7-version-3.png', '/paintings/portraits/zine-guerilla-tea-7-version-4.png', '/paintings/portraits/zine-guerilla-tea-7-version-5.png', '/paintings/portraits/zine-guerilla-tea-7-version-6.png', '/paintings/portraits/zine-guerilla-tea-7-version-7.png', '/paintings/portraits/zine-guerilla-tea-7-version-8.png', '/paintings/portraits/zine-guerilla-tea-7-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
 //   },
@@ -1477,7 +1477,7 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi'],
       products: ['other'],
-      themes: ['Tea'],
+      themes: ['tea'],
       orientation: 'portrait',
       image: '/paintings/portraits/spoon-1-version-1.png'
   },
