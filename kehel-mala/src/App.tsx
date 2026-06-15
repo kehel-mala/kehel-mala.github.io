@@ -627,10 +627,14 @@ function GalleryPage({ product }: { product: Product | 'all' }) {
     }),
   );
 
-  // 'featured' keeps the paintings.ts array order; otherwise sort by date.
+  // 'featured' shows the featured pieces first, then everything else, each group
+  // sorted A–Z by title; 'newest'/'oldest' sort by date.
   const visible =
     sort === 'featured'
-      ? filtered
+      ? [...filtered].sort((a, b) => {
+          if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
+          return a.title.localeCompare(b.title, undefined, { sensitivity: 'base' });
+        })
       : [...filtered].sort((a, b) => {
           const cmp = (a.date ?? '').localeCompare(b.date ?? '');
           return sort === 'newest' ? -cmp : cmp;
