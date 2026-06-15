@@ -142,6 +142,7 @@ export const paintings: Painting[] = [
       products: ['paintings', 'other'],
       themes: ['sky', 'space'],
       orientation: 'landscape',
+      featured: true,
       image: '/paintings/landscapes/dancing-star-1-version-1.png', versions: 2
   },
   {

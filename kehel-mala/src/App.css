@@ -777,13 +777,16 @@
 
 @media (max-width: 600px) {
   .gallery {
-    --gap: 22px;
-    --cell-portrait-w: 150px;
-    --cell-portrait-h: 212px;
-    --cell-landscape-w: 212px;
-    --cell-landscape-h: 150px;
-    gap: 44px var(--gap);
-    padding: 24px 20px 72px;
+    --gap: 18px;
+    /* Two portrait tiles per row, sized to fill the screen width (A4 ratio),
+       so they grow with the phone instead of staying a fixed small size. */
+    --cell-portrait-w: clamp(150px, (100vw - 54px) / 2, 240px);
+    --cell-portrait-h: calc(var(--cell-portrait-w) * 1.414);
+    /* Landscape tiles span (almost) the full width, one per row. */
+    --cell-landscape-w: min(100vw - 64px, 420px);
+    --cell-landscape-h: calc(var(--cell-landscape-w) / 1.414);
+    gap: 40px var(--gap);
+    padding: 24px 16px 72px;
   }
   .gallery-controls {
     padding: 24px 20px 0;
