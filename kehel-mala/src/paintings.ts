@@ -132,7 +132,7 @@ export const paintings: Painting[] = [
 
   // ── Paintings ──
   {
-      id: '1',
+      id: 'dancing-star-1-version-1',
       title: 'Dancing Star',
       medium: 'tuft',
       date: '2025-12',
@@ -145,7 +145,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/dancing-star-1-version-1.png', versions: 2
   },
   {
-      id: '2',
+      id: 'kude-1-version-1',
       title: 'kude',
       medium: 'watercolour',
       date: '2013-02',
@@ -158,7 +158,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/kude-1-version-1.png'
   },
   {
-      id: '3',
+      id: 'mountain-1-version-1',
       title: 'Magical Time',
       medium: 'watercolour',
       date: '2026-05',
@@ -171,7 +171,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/mountain-1-version-1.png'
   },
   {
-      id: '4',
+      id: 'mind-map-1-version-1',
       title: 'Spiralling',
       medium: 'watercolour',
       date: '2026-02',
@@ -184,8 +184,8 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/mind-map-1-version-1.png'
   },
   {
-      id: '5',
-      title: 'The Universe is purple',
+      id: 'purple-sky-1-version-1',
+      title: 'The Universe is Purple',
       medium: 'watercolour',
       date: '2020-06',
       dimensions: '',
@@ -197,7 +197,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/purple-sky-1-version-1.png'
   },
   {
-      id: '6',
+      id: 'flowers-1-version-1',
       title: 'Sepalika',
       medium: 'watercolour',
       date: '2026-03',
@@ -211,7 +211,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/flowers-1-version-1.png', versions: 2
   },
   {
-      id: '7',
+      id: 'whimsicle-fruits-1-version-1',
       title: 'Whimsical Fruits',
       medium: 'watercolour',
       date: '2025-11',
@@ -227,7 +227,7 @@ export const paintings: Painting[] = [
 
   // ── Photo Prints ──
   {
-      id: '8',
+      id: 'autumn-1-version-1',
       title: 'Autumn',
       medium: 'photography',
       date: '2020-06',
@@ -240,7 +240,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/autumn-1-version-1.jpg'
   },
   {
-      id: '9',
+      id: 'new-year-cbd-1-version-1',
       title: 'New Years!',
       medium: 'photography',
       date: '2024-12',
@@ -253,7 +253,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/new-year-cbd-1-version-1.jpg'
   },
   {
-      id: '10',
+      id: 'sigiriya-2-version-1',
       title: 'Sigiriya and Pidurangala',
       medium: 'photography',
       date: '2026-04',
@@ -266,7 +266,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/sigiriya-2-version-1.jpg'
   },
   {
-      id: '11',
+      id: 'morning-1-version-1',
       title: 'Sunrise Through The Years',
       medium: 'photography',
       date: '',
@@ -279,7 +279,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/morning-1-version-1.jpg', versions: 8
   },
   {
-      id: '12',
+      id: 'nuwara-eliya-2-version-1',
       title: 'Tea Estates',
       medium: 'photography',
       date: '2026-05',
@@ -292,7 +292,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/nuwara-eliya-2-version-1.jpg', versions: 2
   },
   {
-      id: '13',
+      id: 'yaaya-1-version-1',
       title: 'wel yaaya',
       medium: 'photography',
       date: '2015-12',
@@ -305,7 +305,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/yaaya-1-version-1.jpg'
   },
   {
-      id: '14',
+      id: 'cloud-1-version-1',
       title: 'Whisps in the wind',
       medium: 'photography',
       date: '',
@@ -318,7 +318,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/cloud-1-version-1.jpg', versions: 3
   },
   {
-      id: '15',
+      id: 'winter-1-version-1',
       title: 'Winter',
       medium: 'photography',
       date: '',
@@ -333,7 +333,7 @@ export const paintings: Painting[] = [
 
   // ── Websites ──
   {
-      id: '16',
+      id: 'colourful-lang-1-version-1',
       title: 'Colourful Language',
       medium: 'website',
       date: '2025',
@@ -347,7 +347,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/colourful-lang-1-version-1.png'
   },
   {
-      id: '17',
+      id: 'kehel-mala-1-version-1',
       title: 'Kehel Mala',
       medium: 'website',
       date: '2026-06',
@@ -361,7 +361,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/kehel-mala-1-version-1.png', versions: 2
   },
   {
-      id: '18',
+      id: 'koho-koho-1-version-1',
       title: 'Koho Koho',
       medium: 'website',
       date: '2025-04',
@@ -376,7 +376,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/koho-koho-1-version-1.png', versions: 2
   },
   {
-      id: '19',
+      id: 'mug-life-1-version-1',
       title: '#MugLife',
       medium: 'website',
       date: '2024-11',
@@ -392,7 +392,7 @@ export const paintings: Painting[] = [
 
   // ── Zines ──
   {
-      id: '20',
+      id: 'zine-road-trip-1-version-1',
       title: 'Our First Road Trip',
       medium: 'comics',
       date: '',
@@ -407,7 +407,7 @@ export const paintings: Painting[] = [
 
   // ── Other ──
   {
-      id: '21',
+      id: 'mili-cushion-1-version-1',
       title: 'Always watchin',
       medium: 'tuft',
       date: '2023-04',
@@ -420,7 +420,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/mili-cushion-1-version-1.png', versions: 2
   },
   {
-      id: '22',
+      id: 'frogs-1-version-1',
       title: 'Jingle frogs',
       medium: 'felt',
       date: '2025-12',
@@ -441,10 +441,10 @@ export const paintings: Painting[] = [
 
   // ── Paintings ──
   {
-      id: '24',
+      id: 'elements-1-version-1',
       title: 'Air',
       medium: 'acrylic',
-      date: '',
+      date: '2025-10',
       dimensions: '',
       description: '',
       tags: ['milindi', 'acrylic'],
@@ -454,25 +454,26 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/elements-1-version-1.png'
   },
   {
-      id: '25',
+      id: 'space-alien-1-version-1',
       title: 'Alien',
       medium: 'texture',
-      date: '',
+      date: '2025-12',
       dimensions: '',
-      description: '',
+      description: 'Can you tell that Chaamudi likes space? Can ya?',
       tags: ['chaamudi', 'texture'],
       products: ['paintings'],
       themes: ['space'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/space-alien-1-version-1.png'
   },
   {
-      id: '26',
+      id: 'background-1-version-1',
       title: 'ammi',
       medium: 'acrylic',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'For our ammi (mum)',
       tags: ['milindi', 'acrylic'],
       products: ['paintings', 'tea-towels'],
       themes: ['feelings', 'background'],
@@ -480,12 +481,12 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/background-1-version-1.png'
   },
   {
-      id: '27',
-      title: 'Ayu : : Silksong OC',
+      id: 'silksong-2-version-1',
+      title: 'Silksong OC - Ayu',
       medium: 'watercolour',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'Ayu has fleed her home and is looking for her family whilst hoarding rosaries and knick knacks!',
       tags: ['milindi', 'watercolour'],
       products: ['paintings'],
       themes: ['Silksong'],
@@ -493,20 +494,20 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/silksong-2-version-1.png'
   },
   {
-      id: '28',
+      id: 'balcony-garden-1-version-1',
       title: 'Balcony Garden',
       medium: 'digital art',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'Where Milindi likes to spend most of her time, huffing her curry plant, calling our parents.',
       tags: ['milindi'],
       products: ['paintings'],
-      themes: [],
+      themes: ['life'],
       orientation: 'portrait',
       image: '/paintings/portraits/balcony-garden-1-version-1.png', versions: 2
   },
   {
-      id: '29',
+      id: 'black-dog-black-bird-1-version-1',
       title: 'Spirit Animals',
       medium: 'pen',
       date: '2022-12',
@@ -519,12 +520,12 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/black-dog-black-bird-1-version-1.png'
   },
   {
-      id: '30',
+      id: 'bored-1-version-1',
       title: 'Bored.',
       medium: 'digital art',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'Chaamudi was bored and thought this was great. Pshah!',
       tags: ['chaamudi', 'digital art'],
       products: ['paintings'],
       themes: [],
@@ -532,61 +533,60 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/bored-1-version-1.png'
   },
   {
-      id: '31',
-      title: 'Burnt Out But Survivin',
+      id: 'grumpy-1-version-1',
+      title: 'Burnt Out But Survivin\'',
       medium: 'pencil',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'siiiiiiiiiiigh.',
       tags: ['chaamudi', 'pencil'],
       products: ['paintings'],
-      themes: [],
-      featured: true,
+      themes: ['feelings', 'life'],
       orientation: 'portrait',
       image: '/paintings/portraits/grumpy-1-version-1.png'
   },
   {
-      id: '32',
+      id: 'trees-1-version-1',
       title: 'Chilli',
       medium: 'watercolour',
-      date: '',
+      date: '2025-10',
       dimensions: '',
-      description: '',
+      description: 'South Asians being obsessed with chilli, as usual.',
       tags: ['milindi', 'watercolour'],
       products: ['paintings', 'tea-towels'],
-      themes: [],
+      themes: ['nature', 'plants'],
       orientation: 'portrait',
       image: '/paintings/portraits/trees-1-version-1.png'
   },
   {
-      id: '33',
+      id: 'paint-and-sip-1-version-1',
       title: 'Dancer',
       medium: 'acrylic',
       date: '',
       dimensions: '',
       description: '',
-      tags: ['chaamudi', 'acrylic'],
+      tags: ['chaamudi', 'acrylic', 'canvas'],
       products: ['paintings'],
-      themes: [],
+      themes: ['rainbow'],
       featured: true,
       orientation: 'portrait',
       image: '/paintings/portraits/paint-and-sip-1-version-1.png'
   },
   {
-      id: '34',
+      id: 'mind-map-2-version-1',
       title: 'Darkest timeline',
       medium: 'pencil',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'What Milindi\'s life feels like sometimes . . . kept incomplete without colour on purpose.',
       tags: ['milindi', 'pencil'],
       products: ['paintings'],
-      themes: [],
+      themes: ['feelings', 'life'],
       orientation: 'portrait',
       image: '/paintings/portraits/mind-map-2-version-1.png'
   },
   {
-      id: '35',
+      id: 'darkness-creeping-1-version-1',
       title: 'Darkness Creeping',
       medium: '',
       date: '',
@@ -599,7 +599,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/darkness-creeping-1-version-1.png'
   },
   {
-      id: '36',
+      id: 'dragon-1-version-1',
       title: 'Dragon',
       medium: 'watercolour',
       date: '',
@@ -609,10 +609,11 @@ export const paintings: Painting[] = [
       products: ['paintings', 'tea-towels'],
       themes: ['nature'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/dragon-1-version-1.png'
   },
   {
-      id: '37',
+      id: 'doodles-version-1',
       title: 'Favourite Things',
       medium: 'watercolour',
       date: '',
@@ -620,12 +621,13 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'watercolour'],
       products: ['paintings'],
-      themes: ['feelings'],
+      themes: ['feelings', 'life'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/doodles-version-1.png', versions: 2
   },
   {
-      id: '38',
+      id: 'feelings-1-version-1',
       title: 'Feelings',
       medium: 'acrylic',
       date: '',
@@ -638,7 +640,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/feelings-1-version-1.png', versions: 2
   },
   {
-      id: '39',
+      id: 'filter-1-version-1',
       title: 'Filter',
       medium: '',
       date: '',
@@ -651,7 +653,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/filter-1-version-1.png'
   },
   {
-      id: '40',
+      id: 'fluffy-clouds-1-version-1',
       title: 'It comes and goes in waves',
       medium: 'watercolour',
       date: '',
@@ -661,10 +663,11 @@ export const paintings: Painting[] = [
       products: ['paintings'],
       themes: ['nature'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/fluffy-clouds-1-version-1.png'
   },
   {
-      id: '41',
+      id: 'galaxy-1-version-1',
       title: 'Galaxy',
       medium: 'watercolour',
       date: '',
@@ -677,20 +680,20 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/galaxy-1-version-1.png'
   },
   {
-      id: '42',
+      id: 'silksong-4-version-1',
       title: 'Horney-poo shaws!',
       medium: 'pencil',
       date: '',
       dimensions: '',
       description: '',
       tags: ['milindi', 'pencil'],
-      products: ['paintings'],
-      themes: ['Silksong'],
+      products: ['paintings', 'comics'],
+      themes: ['Silksong', 'life'],
       orientation: 'portrait',
       image: '/paintings/portraits/silksong-4-version-1.png', versions: 2
   },
   {
-      id: '43',
+      id: 'hour-glass-1-version-1',
       title: 'Hour Glass',
       medium: '',
       date: '',
@@ -703,7 +706,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/hour-glass-1-version-1.png'
   },
   {
-      id: '44',
+      id: 'gay-bird-1-version-1',
       title: 'Hummingbird',
       medium: 'watercolour',
       date: '',
@@ -716,7 +719,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/gay-bird-1-version-1.png'
   },
   {
-      id: '45',
+      id: 'whimsicle-fruits-2-version-1',
       title: 'Imposter',
       medium: 'watercolour',
       date: '',
@@ -724,31 +727,32 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'watercolour'],
       products: ['paintings', 'tea-towels'],
-      themes: [],
+      themes: ['nature'],
       featured: true,
       orientation: 'portrait',
       image: '/paintings/portraits/whimsicle-fruits-2-version-1.png', versions: 2
   },
   {
-      id: '46',
+      id: 'patterns-1-version-1',
       title: 'Modern Moonstone',
       medium: 'acrylic',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'Inspired by the moonstone designs during the Anuradhapura kingdom era in Sri Lanka.',
       tags: ['milindi', 'watercolour'],
       products: ['paintings', 'tea-towels'],
-      themes: [],
+      themes: ['patterns'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/patterns-1-version-1.png', versions: 2
   },
   {
-      id: '47',
-      title: 'Myosotis : : Silksong OC',
+      id: 'silksong-1-version-1',
+      title: 'Silksong OC - Myosotis',
       medium: 'watercolour',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'A fake sentinel hiding whilst trying to find their way back their family.',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
       themes: ['Silksong'],
@@ -756,7 +760,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/silksong-1-version-1.png'
   },
   {
-      id: '48',
+      id: 'natives-2-version-1',
       title: 'Natives at Botanic Gardens I',
       medium: 'watercolour',
       date: '',
@@ -764,12 +768,13 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: ['nature'],
+      themes: ['nature', 'plants'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/natives-2-version-1.png'
   },
   {
-      id: '49',
+      id: 'natives-3-version-1',
       title: 'Natives at Botanic Gardens II',
       medium: 'watercolour',
       date: '',
@@ -777,12 +782,12 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: ['nature'],
+      themes: ['nature', 'plants'],
       orientation: 'portrait',
       image: '/paintings/portraits/natives-3-version-1.png', versions: 2
   },
   {
-      id: '50',
+      id: 'natives-4-version-1',
       title: 'Natives at Botanic Gardens III',
       medium: 'watercolour',
       date: '',
@@ -790,26 +795,13 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'watercolour'],
       products: ['paintings'],
-      themes: ['nature'],
+      themes: ['nature', 'plants'],
       featured: true,
       orientation: 'portrait',
       image: '/paintings/portraits/natives-4-version-1.png'
   },
   {
-      id: '51',
-      title: 'Origami Flower',
-      medium: 'origami',
-      date: '2020-10',
-      dimensions: '',
-      description: 'A declaration of lurveeee',
-      tags: ['milindi'],
-      products: ['paintings', 'other'],
-      themes: ['feelings', 'life'],
-      orientation: 'portrait',
-      image: '/paintings/portraits/origami-flower-1-version-1.png', versions: 2
-  },
-  {
-      id: '52',
+      id: 'trees-2-version-1',
       title: 'Pal path',
       medium: 'watercolour',
       date: '',
@@ -817,25 +809,25 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: [],
+      themes: ['nature', 'trees'],
       orientation: 'portrait',
       image: '/paintings/portraits/trees-2-version-1.png', versions: 2
   },
   {
-      id: '53',
+      id: 'parrots-1-version-1',
       title: 'Parrots',
-      medium: '',
+      medium: 'watercolour',
       date: '',
       dimensions: '',
       description: '',
-      tags: [],
+      tags: ['milindi', 'watercolour'],
       products: ['paintings'],
-      themes: [],
+      themes: ['nature'],
       orientation: 'portrait',
       image: '/paintings/portraits/parrots-1-version-1.png', versions: 3
   },
   {
-      id: '54',
+      id: 'srilanka-1-version-1',
       title: 'Pearl of the Indian Ocean',
       medium: 'pen',
       date: '',
@@ -845,10 +837,11 @@ export const paintings: Painting[] = [
       products: ['paintings'],
       themes: ['Sri Lanka'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/srilanka-1-version-1.png'
   },
   {
-      id: '55',
+      id: 'third-wheel-1-version-1',
       title: 'Perpetual third wheel',
       medium: 'pencil',
       date: '',
@@ -856,15 +849,15 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'pencil'],
       products: ['paintings'],
-      themes: [],
+      themes: ['life'],
       orientation: 'portrait',
       image: '/paintings/portraits/third-wheel-1-version-1.png', versions: 2
   },
   {
-      id: '56',
+      id: 'planet-1-version-1',
       title: 'Planet',
       medium: 'texture',
-      date: '',
+      date: '2025-12',
       dimensions: '',
       description: '',
       tags: ['chaamudi', 'texture'],
@@ -874,7 +867,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/planet-1-version-1.png'
   },
   {
-      id: '57',
+      id: 'princess-blue-1-version-1',
       title: 'Queen of the Night',
       medium: 'chalk',
       date: '',
@@ -882,13 +875,13 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'chalk'],
       products: ['paintings', 'tea-towels'],
-      themes: [],
+      themes: ['feelings', 'space', 'sky'],
       featured: true,
       orientation: 'portrait',
       image: '/paintings/portraits/princess-blue-1-version-1.png'
   },
   {
-      id: '58',
+      id: 'background-2-version-1',
       title: 'Radiant Dreamscape',
       medium: 'acrylic',
       date: '',
@@ -901,7 +894,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/background-2-version-1.png'
   },
   {
-      id: '59',
+      id: 'flowers-2-version-1',
       title: 'Robosia',
       medium: 'watercolour',
       date: '',
@@ -909,12 +902,12 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'watercolour'],
       products: ['paintings'],
-      themes: [],
+      themes: ['nature', 'plants'],
       orientation: 'portrait',
       image: '/paintings/portraits/flowers-2-version-1.png', versions: 3
   },
   {
-      id: '60',
+      id: 'shapes-1-version-1',
       title: 'Shapes I',
       medium: 'pen',
       date: '',
@@ -922,12 +915,12 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'pen'],
       products: ['paintings'],
-      themes: [],
+      themes: ['patterns'],
       orientation: 'portrait',
       image: '/paintings/portraits/shapes-1-version-1.png'
   },
   {
-      id: '61',
+      id: 'shapes-framed-1-version-1',
       title: 'Shapes II',
       medium: 'pen',
       date: '',
@@ -935,17 +928,17 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'pen'],
       products: ['paintings'],
-      themes: [],
+      themes: ['patterns'],
       orientation: 'portrait',
       image: '/paintings/portraits/shapes-framed-1-version-1.png'
   },
   {
-      id: '62',
+      id: 'hoodiya-1-version-1',
       title: 'Sinhala Hoodiya (Sinhala Alphabet)',
       medium: 'pen',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'A gift to Tom to aid in his quest to learn Sinhala.',
       tags: ['milindi', 'pen'],
       products: ['paintings'],
       themes: ['Sri Lanka'],
@@ -953,7 +946,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/hoodiya-1-version-1.png'
   },
   {
-      id: '63',
+      id: 'sparkles-1-version-1',
       title: 'Sparkles',
       medium: 'pen',
       date: '',
@@ -961,12 +954,13 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['chaamudi', 'pen'],
       products: ['paintings'],
-      themes: [],
+      themes: ['patterns'],
       orientation: 'portrait',
+      featured: true,
       image: '/paintings/portraits/sparkles-1-version-1.png', versions: 4
   },
   {
-      id: '64',
+      id: 'tea-party-1-version-1',
       title: 'Tea Cup I',
       medium: 'watercolour',
       date: '',
@@ -979,12 +973,12 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/tea-party-1-version-1.png'
   },
   {
-      id: '65',
+      id: 'tea-party-2-version-1',
       title: 'Tea Cup II - Factorials',
       medium: 'watercolour',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'It\'s a tea cup. yup. Tom was trying to emulate Italian drawings or something. Basically, what a tea cup looks like if you flatten it. IDK.',
       tags: ['guest star', 'watercolour'],
       products: ['paintings'],
       themes: ['tea'],
@@ -992,7 +986,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/tea-party-2-version-1.png'
   },
   {
-      id: '66',
+      id: 'tea-party-3-version-1',
       title: 'Tea Cup III',
       medium: 'watercolour',
       date: '',
@@ -1005,12 +999,12 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/tea-party-3-version-1.png'
   },
   {
-      id: '67',
+      id: 'tea-party-4-version-1',
       title: 'Tea Party',
       medium: 'watercolour',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'From our paint and sip with friends! These were the first tea towels we made as gifts to them!',
       tags: ['milindi', 'chaamudi', 'guest star', 'watercolour', 'digital art'],
       products: ['paintings', 'tea-towels'],
       themes: ['tea'],
@@ -1019,12 +1013,12 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/tea-party-4-version-1.png', versions: 2
   },
   {
-      id: '68',
-      title: 'Too Too : : Silksong OC',
+      id: 'silksong-3-version-1',
+      title: 'Silksong OC - TooToo',
       medium: 'texture',
       date: '',
       dimensions: '',
-      description: '',
+      description: 'He\'s a good boy going around picking up things Hornet drops and taking them to his hoarder partner.',
       tags: ['guest star', 'texture'],
       products: ['paintings'],
       themes: ['Silksong'],
@@ -1032,7 +1026,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/silksong-3-version-1.png', versions: 2
   },
   {
-      id: '69',
+      id: 'tree-tops-1-version-1',
       title: 'Tree Tops',
       medium: 'watercolour',
       date: '',
@@ -1040,12 +1034,12 @@ export const paintings: Painting[] = [
       description: '',
       tags: ['milindi', 'watercolour'],
       products: ['paintings'],
-      themes: ['nature'],
+      themes: ['nature', 'feelings'],
       orientation: 'portrait',
       image: '/paintings/portraits/tree-tops-1-version-1.png'
   },
   {
-      id: '70',
+      id: 'elements-2-version-1',
       title: 'Water',
       medium: 'acrylic',
       date: '',
@@ -1060,8 +1054,8 @@ export const paintings: Painting[] = [
 
   // ── Photo Prints ──
   {
-      id: '71',
-      title: 'Spider Web',
+      id: 'spider-park-1-version-1',
+      title: 'The Spee-yider!',
       medium: 'photography',
       date: '2026-06',
       dimensions: '',
@@ -1073,7 +1067,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/spider-park-1-version-1.jpg'
   },
   {
-      id: '72',
+      id: 'h&m-1-version-1',
       title: 'Bourke St',
       medium: 'photography',
       date: '',
@@ -1086,7 +1080,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/h&m-1-version-1.jpg'
   },
   {
-      id: '73',
+      id: 'carlton-gardens-1-version-1',
       title: 'Carlton Gardens',
       medium: 'photography',
       date: '',
@@ -1100,7 +1094,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/carlton-gardens-1-version-1.jpg'
   },
   {
-      id: '74',
+      id: 'fitzroy-gardens-1-version-1',
       title: 'Fitzroy Gardens',
       medium: 'photography',
       date: '2026-05',
@@ -1113,7 +1107,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/fitzroy-gardens-1-version-1.jpg'
   },
   {
-      id: '75',
+      id: 'flagstaff-gardens-1-version-1',
       title: 'Flagstaff Gardens',
       medium: 'photography',
       date: '2026-02',
@@ -1126,7 +1120,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/flagstaff-gardens-1-version-1.jpg'
   },
   {
-      id: '76',
+      id: 'natives-1-version-1',
       title: 'Hearth',
       medium: 'photography',
       date: '',
@@ -1139,7 +1133,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/natives-1-version-1.jpg'
   },
   {
-      id: '77',
+      id: 'hot-air-balloons-2-version-1',
       title: 'Hot Air Balloons',
       medium: 'photography',
       date: '',
@@ -1152,7 +1146,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/hot-air-balloons-2-version-1.jpg', versions: 2
   },
   {
-      id: '78',
+      id: 'hot-air-balloons-1-version-1',
       title: 'In the air',
       medium: 'photography',
       date: '',
@@ -1165,7 +1159,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/hot-air-balloons-1-version-1.jpg', versions: 2
   },
   {
-      id: '79',
+      id: 'mornington-1-version-1',
       title: 'Mornington',
       medium: 'photography',
       date: '',
@@ -1178,13 +1172,13 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/mornington-1-version-1.jpg'
   },
   {
-      id: '80',
+      id: 'nuwara-eliya-1-version-1',
       title: 'Nuwara Eliya',
       medium: 'photography',
       date: '',
       dimensions: '',
-      description: '',
-      tags: ['milindi', 'chaamudi', 'photography'],
+      description: 'Encrusted with the golden jewel, Slippery Bastard itself, this scene depicts the warmth of the freezing, the rejuvenation of the exhausted, and Tom being a sleepy boi.',
+      tags: ['milindi', 'chaamudi', 'guest star', 'photography'],
       products: ['photo-prints'],
       themes: ['Sri Lanka'],
       featured: true,
@@ -1192,7 +1186,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/nuwara-eliya-1-version-1.jpg', versions: 5
   },
   {
-      id: '81',
+      id: 'pinnawala-1-version-1',
       title: 'Pinnawala',
       medium: 'photography',
       date: '',
@@ -1205,7 +1199,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/pinnawala-1-version-1.jpg'
   },
   {
-      id: '82',
+      id: 'screaming-tree-1-version-1',
       title: 'Screaming Tree',
       medium: 'photography',
       date: '',
@@ -1218,7 +1212,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/screaming-tree-1-version-1.jpg'
   },
   {
-      id: '83',
+      id: 'sigiriya-1-version-1',
       title: 'Sigiriya',
       medium: 'photography',
       date: '2026-05',
@@ -1233,7 +1227,7 @@ export const paintings: Painting[] = [
 
   // ── Zines ──
   {
-      id: '84',
+      id: 'zine-guerilla-tea-1-version-1',
       title: '#GuerillaTea I',
       medium: 'zines',
       date: '2024-02',
@@ -1247,7 +1241,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/zine-guerilla-tea-1-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-1-version-2.png', '/paintings/portraits/zine-guerilla-tea-1-version-3.png', '/paintings/portraits/zine-guerilla-tea-1-version-4.png', '/paintings/portraits/zine-guerilla-tea-1-version-5.png', '/paintings/portraits/zine-guerilla-tea-1-version-6.png', '/paintings/portraits/zine-guerilla-tea-1-version-7.png', '/paintings/portraits/zine-guerilla-tea-1-version-8.png', '/paintings/portraits/zine-guerilla-tea-1-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
   {
-      id: '85',
+      id: 'zine-guerilla-tea-2-version-1',
       title: '#GuerillaTea II',
       medium: 'zines',
       date: '2024-02',
@@ -1260,7 +1254,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/zine-guerilla-tea-2-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-2-version-2.png', '/paintings/portraits/zine-guerilla-tea-2-version-3.png', '/paintings/portraits/zine-guerilla-tea-2-version-4.png', '/paintings/portraits/zine-guerilla-tea-2-version-5.png', '/paintings/portraits/zine-guerilla-tea-2-version-6.png', '/paintings/portraits/zine-guerilla-tea-2-version-7.png', '/paintings/portraits/zine-guerilla-tea-2-version-8.png', '/paintings/portraits/zine-guerilla-tea-2-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
   {
-      id: '86',
+      id: 'zine-guerilla-tea-3-version-1',
       title: '#GuerillaTea III',
       medium: 'zines',
       date: '2024-02',
@@ -1273,7 +1267,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/zine-guerilla-tea-3-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-3-version-2.png', '/paintings/portraits/zine-guerilla-tea-3-version-3.png', '/paintings/portraits/zine-guerilla-tea-3-version-4.png', '/paintings/portraits/zine-guerilla-tea-3-version-5.png', '/paintings/portraits/zine-guerilla-tea-3-version-6.png', '/paintings/portraits/zine-guerilla-tea-3-version-7.png', '/paintings/portraits/zine-guerilla-tea-3-version-8.png', '/paintings/portraits/zine-guerilla-tea-3-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
   {
-      id: '87',
+      id: 'zine-guerilla-tea-4-version-1',
       title: '#GuerillaTea IV',
       medium: 'zines',
       date: '2024-02',
@@ -1286,7 +1280,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/zine-guerilla-tea-4-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-4-version-2.png', '/paintings/portraits/zine-guerilla-tea-4-version-3.png', '/paintings/portraits/zine-guerilla-tea-4-version-4.png', '/paintings/portraits/zine-guerilla-tea-4-version-5.png', '/paintings/portraits/zine-guerilla-tea-4-version-6.png', '/paintings/portraits/zine-guerilla-tea-4-version-7.png', '/paintings/portraits/zine-guerilla-tea-4-version-8.png', '/paintings/portraits/zine-guerilla-tea-4-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
   {
-      id: '88',
+      id: 'zine-guerilla-tea-5-version-1',
       title: '#GuerillaTea V',
       medium: 'zines',
       date: '2024-02',
@@ -1299,7 +1293,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/zine-guerilla-tea-5-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-5-version-2.png', '/paintings/portraits/zine-guerilla-tea-5-version-3.png', '/paintings/portraits/zine-guerilla-tea-5-version-4.png', '/paintings/portraits/zine-guerilla-tea-5-version-5.png', '/paintings/portraits/zine-guerilla-tea-5-version-6.png', '/paintings/portraits/zine-guerilla-tea-5-version-7.png', '/paintings/portraits/zine-guerilla-tea-5-version-8.png', '/paintings/portraits/zine-guerilla-tea-5-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
   },
   {
-      id: '89',
+      id: 'zine-guerilla-tea-6-version-1',
       title: '#GuerillaTea VI',
       medium: 'zines',
       date: '2024-02',
@@ -1325,7 +1319,7 @@ export const paintings: Painting[] = [
 //       image: '/paintings/portraits/zine-guerilla-tea-7-version-1.png', variants: ['/paintings/portraits/zine-guerilla-tea-7-version-2.png', '/paintings/portraits/zine-guerilla-tea-7-version-3.png', '/paintings/portraits/zine-guerilla-tea-7-version-4.png', '/paintings/portraits/zine-guerilla-tea-7-version-5.png', '/paintings/portraits/zine-guerilla-tea-7-version-6.png', '/paintings/portraits/zine-guerilla-tea-7-version-7.png', '/paintings/portraits/zine-guerilla-tea-7-version-8.png', '/paintings/portraits/zine-guerilla-tea-7-version-9.png', '/paintings/landscapes/zine-1-version-1.png', '/paintings/landscapes/zine-1-version-2.png']
 //   },
   {
-      id: '91',
+      id: 'zine-special-someone-1-version-1',
       title: 'To my special someone . . . .',
       medium: 'zines',
       date: '2024-02',
@@ -1341,7 +1335,7 @@ export const paintings: Painting[] = [
 
   // ── Comics ──
   {
-      id: '92',
+      id: 'adhd-no-1-version-1',
       title: 'ADHD?',
       medium: 'comics',
       date: '2026-06',
@@ -1354,7 +1348,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/adhd-no-1-version-1.png'
   },
   {
-      id: '93',
+      id: 'comic-mili-alone-1-version-1',
       title: 'Good Day',
       medium: 'comics',
       date: '2024',
@@ -1367,7 +1361,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/comic-mili-alone-1-version-1.png'
   },
   {
-      id: '94',
+      id: 'comic-productive-sat-1-version-1',
       title: '"Productive" Saturday',
       medium: 'comics',
       date: '2025-10',
@@ -1383,7 +1377,7 @@ export const paintings: Painting[] = [
 
   // ── Other ──
   {
-      id: '95',
+      id: 'light-frame-1-version-1',
       title: 'Living Lit',
       medium: 'pencil',
       date: '2024-12',
@@ -1396,7 +1390,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/light-frame-1-version-1.png'
   },
   {
-      id: '96',
+      id: 'glass-1-version-1',
       title: 'Painted Lights',
       medium: 'glass paint',
       date: '2025-06',
@@ -1409,7 +1403,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/glass-1-version-1.png', versions: 2
   },
   {
-      id: '97',
+      id: 'masks-1-version-1',
       title: 'Masquerading Murder',
       medium: 'acrylic',
       date: '2025-06',
@@ -1423,7 +1417,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/masks-1-version-1.png', versions: 9
   },
   {
-      id: '98',
+      id: 'mosaic-lamp-1-version-1',
       title: 'Regular Mosaic Lamps',
       medium: 'mosaic',
       date: '2023-03',
@@ -1436,7 +1430,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/mosaic-lamp-1-version-1.png', versions: 2
   },
   {
-      id: '23',
+      id: 'mosaic-lamp-2-version-1',
       title: 'Shattered Rainbow',
       medium: 'mosaic',
       date: '2023-11',
@@ -1449,7 +1443,7 @@ export const paintings: Painting[] = [
       image: '/paintings/landscapes/mosaic-lamp-2-version-1.png'
   },
   {
-      id: '99',
+      id: 'origami-1-version-1',
       title: 'Slug',
       medium: 'origami',
       date: '',
@@ -1462,7 +1456,20 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/origami-1-version-1.png', versions: 2
   },
   {
-      id: '100',
+      id: 'origami-flower-1-version-1',
+      title: 'Origami Flower',
+      medium: 'origami',
+      date: '2020-10',
+      dimensions: '',
+      description: 'A declaration of lurveeee',
+      tags: ['milindi'],
+      products: ['other'],
+      themes: ['feelings', 'life'],
+      orientation: 'portrait',
+      image: '/paintings/portraits/origami-flower-1-version-1.png', versions: 2
+  },
+  {
+      id: 't-shirt-glow-1-version-1',
       title: 'T-Shirt Glow',
       medium: 'glow in the dark paint',
       date: '2025-12',
@@ -1475,7 +1482,7 @@ export const paintings: Painting[] = [
       image: '/paintings/portraits/t-shirt-glow-1-version-1.png', versions: 2
   },
   {
-      id: '101',
+      id: 'spoon-1-version-1',
       title: 'Spoon',
       medium: 'wood',
       date: '2026-01',

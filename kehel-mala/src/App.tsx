@@ -30,7 +30,7 @@ type Route =
   | { kind: 'gallery'; product: Product | 'all' }
   | { kind: 'work'; id: string };
 
-const CONTACT_EMAIL = 'milindi.beeloud@gmail.com';
+const CONTACT_EMAIL = 'milindikodikara@gmail.com';
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -358,6 +358,12 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
                 <dd>{painting.medium}</dd>
               </div>
             )}
+            {themesOf(painting).length > 0 && (
+              <div className="work-spec">
+                <dt>Themes</dt>
+                <dd>{themesOf(painting).join(', ')}</dd>
+              </div>
+            )}
             {painting.date && (
               <div className="work-spec">
                 <dt>Created</dt>
@@ -379,16 +385,6 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
           </dl>
 
           {painting.description && <p className="work-desc">{painting.description}</p>}
-
-          {painting.tags && painting.tags.length > 0 && (
-            <div className="work-tags">
-              {painting.tags.map((t) => (
-                <a key={t} className="work-tag" href="#/gallery">
-                  {t}
-                </a>
-              ))}
-            </div>
-          )}
 
           <a className="work-enquire" href={`mailto:${CONTACT_EMAIL}?subject=${subject}`}>
             Enquire about this piece
@@ -523,6 +519,16 @@ function AboutPage() {
   );
 }
 
+// Order text A–Z, but push entries that start with a non-letter (e.g. '#MugLife',
+// '"Productive" Saturday') after all the alphabetic ones rather than before them.
+function compareTitles(a: string, b: string): number {
+  const startsAlpha = (s: string) => /^[a-z]/i.test(s.trim());
+  const aa = startsAlpha(a);
+  const ba = startsAlpha(b);
+  if (aa !== ba) return aa ? -1 : 1;
+  return a.localeCompare(b, undefined, { sensitivity: 'base' });
+}
+
 type Sort = 'featured' | 'newest' | 'oldest';
 
 // The four filter axes shown on the "All" page. On a product sub-page the
@@ -560,7 +566,7 @@ function orderValues(facet: Facet, present: Set<string>): string[] {
     case 'product':
       return PRODUCTS.map((p) => p.id).filter((id) => present.has(id));
     case 'theme':
-      return Array.from(present).sort((a, b) => a.localeCompare(b));
+      return Array.from(present).sort(compareTitles);
   }
 }
 
@@ -636,7 +642,7 @@ function GalleryPage({ product }: { product: Product | 'all' }) {
     sort === 'featured'
       ? [...filtered].sort((a, b) => {
           if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
-          return a.title.localeCompare(b.title, undefined, { sensitivity: 'base' });
+          return compareTitles(a.title, b.title);
         })
       : [...filtered].sort((a, b) => {
           const cmp = (a.date ?? '').localeCompare(b.date ?? '');
@@ -746,9 +752,21 @@ function GalleryPage({ product }: { product: Product | 'all' }) {
 // The featured landing page (reached by clicking the logo). Outré-style: a row
 // of featured pieces per product section, each linking through to its section.
 function HomePage() {
-  const sections = PRODUCTS.map((prod) => ({
+  // Featured rows follow the gallery's product order, except Tea Towels is
+  // pulled to the front here (this reorder is local to the featured page).
+  const order = PRODUCTS.slice().sort(
+    (a, b) => (a.id === 'tea-towels' ? 0 : 1) - (b.id === 'tea-towels' ? 0 : 1),
+  );
+  const sections = order.map((prod) => ({
     prod,
-    items: paintings.filter((p) => p.featured && productsOf(p).includes(prod.id)),
+    items: paintings.filter((p) => {
+      if (!p.featured || !productsOf(p).includes(prod.id)) return false;
+      // A featured tea-towel piece shows only under Tea Towels here, never also
+      // duplicated into Paintings (even when it carries both products). The "All"
+      // gallery still lists it under every section as usual.
+      if (prod.id === 'paintings' && productsOf(p).includes('tea-towels')) return false;
+      return true;
+    }),
   })).filter((s) => s.items.length > 0);
 
   return (
