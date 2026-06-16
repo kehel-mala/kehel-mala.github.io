@@ -249,6 +249,7 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
   const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const [embedFailed, setEmbedFailed] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   if (!painting) {
     return (
@@ -268,6 +269,19 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = placeholder(painting.title, painting.orientation);
+  };
+
+  const go = (delta: number) =>
+    setIndex((i) => (i + delta + images.length) % images.length);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); // swipe left → next
+    touchStartX.current = null;
   };
 
   return (
@@ -312,19 +326,42 @@ function WorkPage({ id, backHref, backLabel }: { id: string; backHref: string; b
             </div>
           ) : (
             <>
-              <button
-                type="button"
-                className={`work-frame ${painting.orientation}`}
-                onClick={() => setLightbox(true)}
-                aria-label="Open full-size gallery"
+              <div
+                className={`work-stage ${painting.orientation}`}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
               >
-                <img
-                  src={images[index]}
-                  alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
-                  onError={onError}
-                />
-                <span className="work-zoom-hint" aria-hidden="true">⤢</span>
-              </button>
+                <button
+                  type="button"
+                  className={`work-frame ${painting.orientation}`}
+                  onClick={() => setLightbox(true)}
+                  aria-label="Open full-size gallery"
+                >
+                  <img
+                    src={images[index]}
+                    alt={`${painting.title}${multiple ? ` — version ${index + 1} of ${images.length}` : ''}`}
+                    onError={onError}
+                  />
+                  <span className="work-zoom-hint" aria-hidden="true">⤢</span>
+                </button>
+
+                {multiple && (
+                  <>
+                    <button
+                      type="button"
+                      className="work-nav prev"
+                      aria-label="Previous version"
+                      onClick={() => go(-1)}
+                    />
+                    <button
+                      type="button"
+                      className="work-nav next"
+                      aria-label="Next version"
+                      onClick={() => go(1)}
+                    />
+                  </>
+                )}
+              </div>
 
               {multiple && (
             <div className="work-thumbs" role="tablist" aria-label="Versions">

@@ -250,6 +250,7 @@ export const paintings: Painting[] = [
       products: ['photo-prints'],
       themes: ['city', 'sky'],
       orientation: 'landscape',
+      featured: true,
       image: '/paintings/landscapes/new-year-cbd-1-version-1.jpg'
   },
   {

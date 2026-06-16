@@ -848,6 +848,70 @@
   align-items: center;
 }
 
+/* Wraps the framed image plus its version arrows so the arrows sit over the
+   image edges (and swipe gestures are captured) without nesting buttons. */
+.work-stage {
+  position: relative;
+  width: 100%;
+}
+
+.work-stage.landscape {
+  max-width: 640px;
+}
+
+/* Prev/next version arrows overlaying the framed image on the detail page. */
+.work-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(40, 34, 24, 0.2);
+  opacity: 0.9;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  z-index: 2;
+}
+
+.work-nav.prev {
+  left: 24px;
+}
+
+.work-nav.next {
+  right: 24px;
+}
+
+/* Chevron drawn as a rotated bordered box so it sits dead-centre in the circle. */
+.work-nav::before {
+  content: '';
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: solid currentColor;
+  border-width: 0 0 2px 2px;
+}
+
+.work-nav.prev::before {
+  transform: translateX(2px) rotate(45deg);
+}
+
+.work-nav.next::before {
+  transform: translateX(-2px) rotate(225deg);
+}
+
+.work-nav:hover {
+  background: #ffffff;
+  color: var(--orange);
+  opacity: 1;
+}
+
 /* Cream mat + soft shadow, echoing the gallery frame. Acts as a button that
    opens the full-size gallery. */
 .work-frame {
